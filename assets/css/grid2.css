@@ -1,0 +1,139 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.grid-container > div {
+  text-align: center;
+}
+
+.item1 {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+.item2 {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  height: 9em;
+}
+.grid-container .item1 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s linear;
+  width: 40em;
+  height: 20em;
+}
+.grid-container .item2 img {
+  transition: transform 0.3s linear;
+  width: 20em;
+  height: 100%;
+}
+.grid-container .item1:hover img {
+  transform: scale(1.1);
+}
+.grid-container .item2:hover img {
+  transform: scale(1.1);
+}
+.grid-container .item1 .grid-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  line-height: 1.8em;
+}
+.grid-container .item2 .grid-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  line-height: 1.4em;
+}
+.grid-container .item1 .grid-title {
+  color: orange;
+  font-size: 1.5rem;
+  position: relative;
+  font-weight: 700;
+  margin-left: 5px;
+}
+.grid-container .item1 .grid-content::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+.item1 .grid-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+.item1 .grid-info span {
+  margin-left: 5px;
+}
+.grid-container .item2 .grid-title {
+  color: orange;
+  font-size: 1.0rem;
+  position: relative;
+  font-weight: 700;
+  margin-left: 5px;
+}
+.grid-container .item2 .grid-content::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+.item2 .grid-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+.item2 .grid-info span {
+  margin-left: 5px;
+}
+.grid-container i{
+  margin-left: 5px;
+}
+
+.grid-container-theater {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  width: 90%;
+  justify-content: center;
+  margin-left: 40px;
+}
+
+.grid-container-theater .item-theater{
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  height: 20em;
+  width: 14em;
+}
+.grid-container-theater .item-theater img{
+  transition: transform 0.3s linear;
+}
+.grid-container-theater .item-theater:hover img {
+  transform: scale(1.1);
+}

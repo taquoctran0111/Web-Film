@@ -487,189 +487,51 @@
         <div class="section-header">
             Phim lẻ mới
         </div>
-        <div class="movies-slide carousel-nav-center owl-carousel">
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/supergirl.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Supergirl
+        <div class="grid-container">
+            <a href="#" class="item1">
+                <img src="assets/images/images-grid/Natra-trung-sinh.jpg">
+                <div class="grid-content">
+                    <div class="grid-title">
+                        HD
                     </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+                    <div class="grid-infos">
+                        <div class="grid-info">
+                            <span>Tân Phong Thần: Na Tra Trùng Sinh</span>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
+                        <div class="grid-info">
+                            <span>New Gods: Nezha Reborn / Xin Shen Bang: Ne Zha ChongSheng</span>
                         </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="grid-info">
+                            <i class="fa fa-eye"></i>
+                            <span>68.7K</span>
                         </div>
                     </div>
                 </div>
             </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/stranger-thing.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Stranger Things
+            <a href="#" class="item2">
+                <img src="assets/images/images-grid/Kong_skullisland.jpg">
+                <div class="grid-content">
+                    <div class="grid-title">
+                        HD
                     </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+                    <div class="grid-infos">
+                        <div class="grid-info">
+                            <span>Godzilla: Đảo đầu lâu</span>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="grid-info">
+                            <i class="fa fa-eye"></i>
+                            <span>68.7K</span>
                         </div>
                     </div>
                 </div>
             </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/star-trek.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Star Trek
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/penthouses.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Penthouses
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/mandalorian.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Mandalorian
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/the-falcon.webp" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        The Falcon And The Winter Soldier
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/series/wanda.png" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Wanda Vision
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
+            <a href="#" class="item2"><img src="assets/images/images-grid/daomobutky.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/doiquannguoichet.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/hainguoixala.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/nguoi-mandalorian.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/nuhoangbanggia.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/truyhon.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/xmenevolution.jpg"></a>
         </div>
     </div>
 </div>
@@ -679,191 +541,52 @@
 <div class="section">
     <div class="container">
         <div class="section-header">
-            Phim hoạt hình
+            Phim bộ mới
         </div>
-        <div class="movies-slide carousel-nav-center owl-carousel">
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/demon-slayer.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Demon Slayer
+        <div class="grid-container">
+            <a href="#" class="item1">
+                <img src="assets/images/images-grid/Natra-trung-sinh.jpg">
+                <div class="grid-content">
+                    <div class="grid-title">
+                        HD
                     </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+                    <div class="grid-infos">
+                        <div class="grid-info">
+                            <span>Tân Phong Thần: Na Tra Trùng Sinh</span>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
+                        <div class="grid-info">
+                            <span>New Gods: Nezha Reborn / Xin Shen Bang: Ne Zha ChongSheng</span>
                         </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="grid-info">
+                            <i class="fa fa-eye"></i>
+                            <span>68.7K xem</span>
                         </div>
                     </div>
                 </div>
             </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/croods.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Croods
+            <a href="#" class="item2">
+                <img src="assets/images/images-grid/Kong_skullisland.jpg">
+                <div class="grid-content">
+                    <div class="grid-title">
+                        HD
                     </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+                    <div class="grid-infos">
+                        <div class="grid-info">
+                            <span>Godzilla: Đảo đầu lâu</span>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="grid-info">
+                            <span>68.7K xem</span>
                         </div>
                     </div>
                 </div>
             </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/dragon.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Dragonball
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/over-the-moon.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Over The Moon
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/weathering.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Weathering With You
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/your-name.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Your Name
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/cartoons/coco.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Coco
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
+            <a href="#" class="item2"><img src="assets/images/images-grid/daomobutky.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/doiquannguoichet.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/hainguoixala.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/nguoi-mandalorian.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/nuhoangbanggia.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/truyhon.jpg"></a>
+            <a href="#" class="item2"><img src="assets/images/images-grid/xmenevolution.jpg"></a>
         </div>
     </div>
 </div>
@@ -871,28 +594,47 @@
 <div class="section">
     <div class="container">
         <div class="section-header">
+            Phim chiếu rạp
+        </div>
+        <div class="grid-container-theater">
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/ban-tay-diet-quy.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/chaos-king.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/co-gai-tre-hua-hen.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/doraemon.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/godzilla.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/ke-doi-tra.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/nhan-doi-tinh-yeu.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/sieu-trom.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/toc-san-nguoi.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/trum-cuoi-sieu-dang.jpg"></a>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="section-header">
             Bảng xếp hạng
         </div>
         <div class="list-rank">
-            <div class = "rank-movie">
+            <div class="rank-movie">
                 <p>1</p>
                 <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
             </div>
-            <div class = "rank-movie">
+            <div class="rank-movie">
                 <p>2</p>
-                <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
+                <a href="#"><img src="assets/images/cartoons/your-name.jpg" alt=""></a>
             </div>
-            <div class = "rank-movie">
+            <div class="rank-movie">
                 <p>3</p>
-                <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
+                <a href="#"><img src="assets/images/cartoons/over-the-moon.jpg" alt=""></a>
             </div>
-            <div class = "rank-movie">
+            <div class="rank-movie">
                 <p>4</p>
-                <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
+                <a href="#"><img src="assets/images/cartoons/croods.jpg" alt=""></a>
             </div>
-            <div class = "rank-movie">
+            <div class="rank-movie">
                 <p>5</p>
-                <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
+                <a href="#"><img src="assets/images/cartoons/demon-slayer.jpg" alt=""></a>
             </div>
         </div>
     </div>
