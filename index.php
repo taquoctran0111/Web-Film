@@ -1,4 +1,8 @@
-<?php require_once("header.php") ?>
+<?php 
+    $title = "Trang chủ";
+    require_once('./autoload/Autoload.php');
+    require_once("header.php");
+?>
 <!-- Start container -->
 <!-- HERO SECTION -->
 <div class="hero-section">
@@ -480,8 +484,28 @@
     </div>
 </div>
 <!-- END LATEST MOVIES SECTION -->
-
-<!-- LATEST SERIES SECTION -->
+<!-- START MOVIES THEATER -->
+<div class="section">
+    <div class="container">
+        <div class="section-header">
+            Phim chiếu rạp
+        </div>
+        <div class="grid-container-theater">
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/ban-tay-diet-quy.jpg"></a>
+            <a href="./detail_film.php" class="item-theater"><img src="assets/images/images-theater/chaos-king.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/co-gai-tre-hua-hen.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/doraemon.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/godzilla.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/ke-doi-tra.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/nhan-doi-tinh-yeu.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/sieu-trom.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/toc-san-nguoi.jpg"></a>
+            <a href="#" class="item-theater"><img src="assets/images/images-theater/trum-cuoi-sieu-dang.jpg"></a>
+        </div>
+    </div>
+</div>
+<!-- END MOVIES THEATER -->
+<!-- START SINGLE FILM SECTION -->
 <div class="section">
     <div class="container">
         <div class="section-header">
@@ -508,7 +532,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="item2">
+            <a href="./detail_film.php" class="item2">
                 <img src="assets/images/images-grid/Kong_skullisland.jpg">
                 <div class="grid-content">
                     <div class="grid-title">
@@ -535,9 +559,9 @@
         </div>
     </div>
 </div>
-<!-- END LATEST SERIES SECTION -->
+<!-- END SINGLE FILM SECTION -->
 
-<!-- LATEST CARTOONS SECTION -->
+<!-- START SERIES FILM SECTION -->
 <div class="section">
     <div class="container">
         <div class="section-header">
@@ -590,26 +614,8 @@
         </div>
     </div>
 </div>
-<!-- END LATEST CARTOONS SECTION -->
-<div class="section">
-    <div class="container">
-        <div class="section-header">
-            Phim chiếu rạp
-        </div>
-        <div class="grid-container-theater">
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/ban-tay-diet-quy.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/chaos-king.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/co-gai-tre-hua-hen.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/doraemon.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/godzilla.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/ke-doi-tra.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/nhan-doi-tinh-yeu.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/sieu-trom.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/toc-san-nguoi.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/trum-cuoi-sieu-dang.jpg"></a>
-        </div>
-    </div>
-</div>
+<!-- END SERIES FILM SECTION -->
+<!-- START RANK FILMS -->
 <div class="section">
     <div class="container">
         <div class="section-header">
@@ -639,6 +645,7 @@
         </div>
     </div>
 </div>
+<!-- END RANK FILMS -->
 <!-- SPECIAL MOVIE SECTION -->
 <div class="section">
     <div class="hero-slide-item">
@@ -671,7 +678,7 @@
                 <div class="item-action">
                     <a href="#" class="btn btn-hover">
                         <i class="bx bxs-right-arrow"></i>
-                        <span>Watch now</span>
+                        <span>Xem ngay</span>
                     </a>
                 </div>
             </div>
