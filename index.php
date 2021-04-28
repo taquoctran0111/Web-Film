@@ -1,6 +1,6 @@
 <?php 
-    $title = "Trang chủ";
     require_once('./autoload/Autoload.php');
+    $title = "Trang chủ";
     require_once("header.php");
 ?>
 <!-- Start container -->

@@ -1,6 +1,3 @@
-<?php 
-    require_once('./autoload/Autoload.php');   
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,15 +28,15 @@
                     <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
                 </a>
                 <ul class="nav-menu" id="nav-menu">
-                    <li class = "menu-dropdown">
+                    <li class="menu-dropdown">
                         <a href="#">Thể loại</a>
-                        <ul class = "menu-area">
+                        <ul class="menu-area">
                             <ul>
                                 <li><a href="./category_detail.php">Hành động</a></li>
                                 <li><a href="#">Tình cảm</a></li>
                                 <li><a href="#">Hài hước</a></li>
                                 <li><a href="#">Khoa học</a></li>
-                                <li><a href="#">Kiếm hiệp</a></li>                                
+                                <li><a href="#">Kiếm hiệp</a></li>
                             </ul>
                             <ul>
                                 <li><a href="#">Hoạt hình</a></li>
@@ -57,13 +54,13 @@
                             </ul>
                         </ul>
                     </li>
-                    <li class = "menu-dropdown">
+                    <li class="menu-dropdown">
                         <a href="#">Quốc gia</a>
-                        <ul class = "menu-area">
+                        <ul class="menu-area">
                             <ul>
                                 <li><a href="#">Việt nam</a></li>
                                 <li><a href="#">Nhật bản</a></li>
-                                <li><a href="#">Trung Quốc</a></li>                               
+                                <li><a href="#">Trung Quốc</a></li>
                             </ul>
                             <ul>
                                 <li><a href="#">Mỹ</a></li>
@@ -72,14 +69,26 @@
                             </ul>
                         </ul>
                     </li>
-                    <li class = "menu-dropdown"><a href="#">Phim lẻ</a></li>
-                    <li class = "menu-dropdown"><a href="#">Phim bộ</a></li>
-                    <li class = "menu-dropdown"><a href="#">Chiếu rạp</a></li>
+                    <li class="menu-dropdown"><a href="#">Phim lẻ</a></li>
+                    <li class="menu-dropdown"><a href="#">Phim bộ</a></li>
+                    <li class="menu-dropdown"><a href="#">Chiếu rạp</a></li>
                     <li>
-                        <a href="#" class="btn btn-hover" id = "btn-login">
-                            <span>Đăng nhập</span>
-                        </a>
+                        <?php if (!Auth::customer()) : ?>
+                            <a href="login.php" class="btn btn-hover" id="btn-login">
+                                <span>Đăng nhập</span>
+                            </a>
+                        <?php else : ?>
+                            <p style = "margin-right: 5px">Xin chào 
+                    <li class="menu-dropdown">
+                        <a href="#"><?= Auth::customer()->fullname ?></a>
+                        <ul class="menu-area">
+                            <li><a href="#">Thay đổi thông tin</a></li>
+                            <li><a href="logout.php">Đăng xuất</a></li>
+                        </ul>
                     </li>
+                    </p>
+                <?php endif ?>
+                </li>
                 </ul>
                 <!-- MOBILE MENU TOGGLE -->
                 <div class="hamburger-menu" id="hamburger-menu">
@@ -88,5 +97,3 @@
             </div>
         </div>
     </div>
-    <?php require_once("login.php") ?>
-    <!-- End Header -->

@@ -1,4 +1,5 @@
 <?php 
+    include('./autoload/Autoload.php');
     $title = "Phim hay";
     require_once("header.php");
     $server = "localhost";

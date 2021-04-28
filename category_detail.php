@@ -1,4 +1,8 @@
-<?php require_once("header.php") ?>
+<?php
+require_once('./autoload/Autoload.php');
+$title = "Phim hành động";
+require_once("header.php");
+?>
 <div class="section" style="padding-top: 2.5em">
     <div class="container">
         <div class="section-header">
