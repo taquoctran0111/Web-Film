@@ -1,3 +1,6 @@
+<?php
+require_once('./config/config_login_fb.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,23 +75,36 @@
                     <li class="menu-dropdown"><a href="#">Phim lẻ</a></li>
                     <li class="menu-dropdown"><a href="#">Phim bộ</a></li>
                     <li class="menu-dropdown"><a href="#">Chiếu rạp</a></li>
-                    <li>
-                        <?php if (!Auth::customer()) : ?>
-                            <a href="login.php" class="btn btn-hover" id="btn-login">
-                                <span>Đăng nhập</span>
-                            </a>
-                        <?php else : ?>
-                            <p style = "margin-right: 5px">Xin chào 
-                    <li class="menu-dropdown">
-                        <a href="#"><?= Auth::customer()->fullname ?></a>
-                        <ul class="menu-area">
-                            <li><a href="#">Thay đổi thông tin</a></li>
-                            <li><a href="logout.php">Đăng xuất</a></li>
-                        </ul>
+                    <?php if (!Auth::customer() && !isset($_SESSION['access_token'])) : ?>
+                        <a href="login.php" class="btn btn-hover" id="btn-login">
+                            <span>Đăng nhập</span>
+                        </a>
+                    <?php elseif (isset($_SESSION['access_token'])) : ?>
+                        <p style="margin-right: 5px">Xin chào
+                            <li class="menu-dropdown">
+                                <a href="#"><?php echo $user->getField('name'); ?></a>
+                                <ul class="menu-area">
+                                    <ul>
+                                        <li><a href="#">Thay đổi thông tin</a></li>
+                                        <li><a href="logout.php">Đăng xuất</a></li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </p>
+                    <?php elseif (isset($_SESSION['customer'])) : ?>
+                        <p style="margin-right: 5px">Xin chào
+                            <li class="menu-dropdown">
+                                <a href="#"><?= Auth::customer()->fullname; ?></a>
+                                <ul class="menu-area">
+                                    <ul>
+                                        <li><a href="#">Thay đổi thông tin</a></li>
+                                        <li><a href="logout.php">Đăng xuất</a></li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </p>
+                    <?php endif ?>
                     </li>
-                    </p>
-                <?php endif ?>
-                </li>
                 </ul>
                 <!-- MOBILE MENU TOGGLE -->
                 <div class="hamburger-menu" id="hamburger-menu">

@@ -1,5 +1,6 @@
 <?php
 require_once('./autoload/Autoload.php');
+require_once('./config/config_login_fb.php');
 if (Input::hasPost('login')) {
 
     $username = Input::post('username');
@@ -38,7 +39,7 @@ require_once("header.php");
             <button type="submit" name="login">Đăng nhập</button><br>
             <a href="register.php" class="register-link">Bạn chưa có tài khoản?</a><br>
             <div class="social-icons">
-                <a href="#"><img src="assets/images/login-reg-img/fb.png"></a>
+                <a href="<?php echo $login_url;?>"><img src="assets/images/login-reg-img/fb.png"></a>
                 <a href="#"><img src="assets/images/login-reg-img/gp.png"></a>
             </div>
         </form>
