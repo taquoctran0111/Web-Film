@@ -1,7 +1,8 @@
-<?php 
-    require_once('./autoload/Autoload.php');
-    $title = "Trang chủ";
-    require_once("header.php");
+<?php
+require_once('./autoload/Autoload.php');
+require_once './config/config2.php';
+$title = "Trang chủ";
+require_once("header.php");
 ?>
 <!-- Start container -->
 <!-- HERO SECTION -->
@@ -10,280 +11,171 @@
     <div class="hero-slide">
         <div class="owl-carousel carousel-nav-center" id="hero-carousel">
             <!-- SLIDE ITEM -->
+            <?php
+            $sql1 = "SELECT * FROM tbl_films WHERE id = '2'";
+            $banner1 = $DB->query($sql1);
+            ?>
             <div class="hero-slide-item">
-                <img src="assets/images/black-banner.png" alt="">
-                <div class="overlay"></div>
-                <div class="hero-slide-item-content">
-                    <div class="item-content-wraper">
-                        <div class="item-content-title top-down">
-                            Black Panther
-                        </div>
-                        <div class="movie-infos top-down delay-2">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
+                <?php foreach ($banner1 as $values1) : ?>
+                    <img src="<?= $values1->image_horizontal ?>" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                <?= $values1->name; ?>
                             </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
+                            <div class="movie-infos top-down delay-2">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span><?= $values1->duration ?> phút</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span><?= $values1->quality ?></span>
+                                </div>
                             </div>
-                            <div class="movie-info">
-                                <span>HD</span>
+                            <div class="item-content-description top-down delay-4">
+                                <?= $values1->description ?>
                             </div>
-                            <div class="movie-info">
-                                <span>16+</span>
+                            <div class="item-action top-down delay-6">
+                                <a href="detail_film.php?film_id=<?= $values1->id ?>" class="btn btn-hover">
+                                    <i class="bx bxs-right-arrow"></i>
+                                    <span>Xem ngay</span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="item-content-description top-down delay-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                        </div>
-                        <div class="item-action top-down delay-6">
-                            <a href="#" class="btn btn-hover">
-                                <i class="bx bxs-right-arrow"></i>
-                                <span>Xem ngay</span>
-                            </a>
                         </div>
                     </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- END SLIDE ITEM -->
             <!-- SLIDE ITEM -->
+            <?php
+            $sql2 = "SELECT * FROM tbl_films WHERE id = '3'";
+            $banner2 = $DB->query($sql2);
+            ?>
             <div class="hero-slide-item">
-                <img src="assets/images/supergirl-banner.jpg" alt="">
-                <div class="overlay"></div>
-                <div class="hero-slide-item-content">
-                    <div class="item-content-wraper">
-                        <div class="item-content-title top-down">
-                            Supergirl
-                        </div>
-                        <div class="movie-infos top-down delay-2">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
+                <?php foreach ($banner2 as $values2) : ?>
+                    <img src="<?= $values2->image_horizontal ?>" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                <?= $values2->name; ?>
                             </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
+                            <div class="movie-infos top-down delay-2">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span><?= $values2->duration ?> phút</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span><?= $values2->quality ?></span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>16+</span>
+                                </div>
                             </div>
-                            <div class="movie-info">
-                                <span>HD</span>
+                            <div class="item-content-description top-down delay-4">
+                                <?= $values2->description ?>
                             </div>
-                            <div class="movie-info">
-                                <span>16+</span>
+                            <div class="item-action top-down delay-6">
+                                <a href="detail_film.php?film_id=<?= $values2->id ?>" class="btn btn-hover">
+                                    <i class="bx bxs-right-arrow"></i>
+                                    <span>Xem ngay</span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="item-content-description top-down delay-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                        </div>
-                        <div class="item-action top-down delay-6">
-                            <a href="#" class="btn btn-hover">
-                                <i class="bx bxs-right-arrow"></i>
-                                <span>Xem ngay</span>
-                            </a>
                         </div>
                     </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- END SLIDE ITEM -->
             <!-- SLIDE ITEM -->
+            <?php
+            $sql3 = "SELECT * FROM tbl_films WHERE id = '4'";
+            $banner3 = $DB->query($sql3);
+            ?>
             <div class="hero-slide-item">
-                <img src="assets/images/wanda-banner.jpg" alt="">
-                <div class="overlay"></div>
-                <div class="hero-slide-item-content">
-                    <div class="item-content-wraper">
-                        <div class="item-content-title top-down">
-                            Wanda Vision
-                        </div>
-                        <div class="movie-infos top-down delay-2">
-                            <div class="movie-info">
-                                <i class="bx bxs-star"></i>
-                                <span>9.5</span>
+                <?php foreach ($banner3 as $values3) : ?>
+                    <img src="<?= $values3->image_horizontal ?>" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                <?= $values3->name; ?>
                             </div>
-                            <div class="movie-info">
-                                <i class="bx bxs-time"></i>
-                                <span>120 mins</span>
+                            <div class="movie-infos top-down delay-2">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span><?= $values3->duration ?> phút</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span><?= $values3->quality ?></span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>16+</span>
+                                </div>
                             </div>
-                            <div class="movie-info">
-                                <span>HD</span>
+                            <div class="item-content-description top-down delay-4">
+                                <?= $values3->description ?>
                             </div>
-                            <div class="movie-info">
-                                <span>16+</span>
+                            <div class="item-action top-down delay-6">
+                                <a href="detail_film.php?film_id=<?= $values3->id ?>" class="btn btn-hover">
+                                    <i class="bx bxs-right-arrow"></i>
+                                    <span>Xem ngay</span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="item-content-description top-down delay-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                        </div>
-                        <div class="item-action top-down delay-6">
-                            <a href="#" class="btn btn-hover">
-                                <i class="bx bxs-right-arrow"></i>
-                                <span>Xem ngay</span>
-                            </a>
                         </div>
                     </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- END SLIDE ITEM -->
         </div>
     </div>
     <!-- END HERO SLIDE -->
     <!-- TOP MOVIES SLIDE -->
+    <?php
+    $sql4 = "SELECT * FROM tbl_films ORDER BY id DESC LIMIT 8";
+    $data_new_films = mysqli_query($conn, $sql4);;
+    ?>
     <div class="top-movies-slide">
         <div class="owl-carousel" id="top-movies-slide">
             <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/series/supergirl.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Supergirl
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+            <?php while ($result_new_film = $data_new_films->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $result_new_film['id'] ?>" class="movie-item">
+                    <img src="<?= $result_new_film['image_vertical'] ?>" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            <?= $result_new_film['name'] ?>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/movies/captain-marvel.png" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Captain Marvel
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>9.5</span>
+                            </div>
+                            <div class="movie-info">
+                                <i class="bx bxs-time"></i>
+                                <span><?= $result_new_film['duration'] ?> phút</span>
+                            </div>
+                            <div class="movie-info">
+                                <span><?= $result_new_film['quality'] ?></span>
+                            </div>
+                            <div class="movie-info">
+                                <span>16+</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/cartoons/demon-slayer.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Infinity Train
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/movies/blood-shot.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Bloodshot
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/series/wanda.png" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Wanda Vision
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <div class="movie-item">
-                <img src="assets/images/movies/bat-man.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        The Dark Knight
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </a>
+            <?php endwhile ?>
             <!-- END MOVIE ITEM -->
         </div>
     </div>
@@ -297,188 +189,38 @@
         <div class="section-header">
             Phim đề cử
         </div>
+        <?php
+        $sql6 = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 6";
+        $data_film_suggest = mysqli_query($conn, $sql6);
+        ?>
         <div class="movies-slide carousel-nav-center owl-carousel">
             <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/theatre-dead.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Theatre of the dead
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
+            <?php while ($result_film_suggest = $data_film_suggest->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $result_film_suggest['id'] ?>" class="movie-item">
+                    <img src="<?= $result_film_suggest['image_vertical'] ?>" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            <?= $result_film_suggest['name'] ?>
                         </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/transformer.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Transformer
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>9.5</span>
+                            </div>
+                            <div class="movie-info">
+                                <i class="bx bxs-time"></i>
+                                <span><?= $result_film_suggest['duration'] ?> phút</span>
+                            </div>
+                            <div class="movie-info">
+                                <span><?= $result_film_suggest['quality'] ?></span>
+                            </div>
+                            <div class="movie-info">
+                                <span>16+</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/resident-evil.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Resident Evil
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/captain-marvel.png" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Captain Marvel
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/hunter-killer.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Hunter Killer
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/blood-shot.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Bloodshot
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END MOVIE ITEM -->
-            <!-- MOVIE ITEM -->
-            <a href="#" class="movie-item">
-                <img src="assets/images/movies/call.jpg" alt="">
-                <div class="movie-item-content">
-                    <div class="movie-item-title">
-                        Call
-                    </div>
-                    <div class="movie-infos">
-                        <div class="movie-info">
-                            <i class="bx bxs-star"></i>
-                            <span>9.5</span>
-                        </div>
-                        <div class="movie-info">
-                            <i class="bx bxs-time"></i>
-                            <span>120 mins</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>HD</span>
-                        </div>
-                        <div class="movie-info">
-                            <span>16+</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            <?php endwhile ?>
             <!-- END MOVIE ITEM -->
         </div>
     </div>
@@ -490,20 +232,34 @@
         <div class="section-header">
             Phim chiếu rạp
         </div>
+        <?php
+        $sql5 = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 10";
+        $data_films_theater = mysqli_query($conn, $sql5);
+        ?>
         <div class="grid-container-theater">
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/ban-tay-diet-quy.jpg"></a>
-            <a href="./detail_film.php" class="item-theater"><img src="assets/images/images-theater/chaos-king.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/co-gai-tre-hua-hen.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/doraemon.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/godzilla.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/ke-doi-tra.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/nhan-doi-tinh-yeu.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/sieu-trom.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/toc-san-nguoi.jpg"></a>
-            <a href="#" class="item-theater"><img src="assets/images/images-theater/trum-cuoi-sieu-dang.jpg"></a>
+            <?php while ($row = $data_films_theater->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $row['id'] ?>" class="item-theater">
+                    <img src="<?= $row['image_vertical'] ?>">
+                    <div class="grid-content">
+                        <div class="grid-title">
+                            <?= $row['quality'] ?>
+                        </div>
+                        <div class="grid-infos">
+                            <div class="grid-info1">
+                                <span><?= $row['name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <span><?= $row['subtitle'] ?></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            <?php endwhile ?>
         </div>
     </div>
 </div>
+
 <!-- END MOVIES THEATER -->
 <!-- START SINGLE FILM SECTION -->
 <div class="section">
@@ -511,51 +267,56 @@
         <div class="section-header">
             Phim lẻ mới
         </div>
+        <?php
+        $sql9 = "SELECT * FROM tbl_films WHERE typemovie = '3' ORDER BY num_view DESC LIMIT 1";
+        $data_film_single_highview = mysqli_query($conn, $sql9);
+        ?>
         <div class="grid-container">
-            <a href="#" class="item1">
-                <img src="assets/images/images-grid/Natra-trung-sinh.jpg">
-                <div class="grid-content">
-                    <div class="grid-title">
-                        HD
-                    </div>
-                    <div class="grid-infos">
-                        <div class="grid-info">
-                            <span>Tân Phong Thần: Na Tra Trùng Sinh</span>
+            <?php while ($row3 = $data_film_single_highview->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $row3['id'] ?>" class="item1">
+                    <img src="<?= $row3['image_horizontal'] ?>">
+                    <div class="grid-content">
+                        <div class="grid-title">
+                            <?= $row3['quality'] ?>
                         </div>
-                        <div class="grid-info">
-                            <span>New Gods: Nezha Reborn / Xin Shen Bang: Ne Zha ChongSheng</span>
-                        </div>
-                        <div class="grid-info">
-                            <i class="fa fa-eye"></i>
-                            <span>68.7K</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="./detail_film.php" class="item2">
-                <img src="assets/images/images-grid/Kong_skullisland.jpg">
-                <div class="grid-content">
-                    <div class="grid-title">
-                        HD
-                    </div>
-                    <div class="grid-infos">
-                        <div class="grid-info">
-                            <span>Godzilla: Đảo đầu lâu</span>
-                        </div>
-                        <div class="grid-info">
-                            <i class="fa fa-eye"></i>
-                            <span>68.7K</span>
+                        <div class="grid-infos">
+                            <div class="grid-info">
+                                <span><?= $row3['name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <span><?= $row3['sub_name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <i class="fa fa-eye"></i>
+                                <span><?= $row3['num_view'] ?></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/daomobutky.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/doiquannguoichet.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/hainguoixala.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/nguoi-mandalorian.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/nuhoangbanggia.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/truyhon.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/xmenevolution.jpg"></a>
+                </a>
+            <?php endwhile ?>
+            <?php
+            $sql7 = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 8";
+            $data_film_single = mysqli_query($conn, $sql7);
+            ?>
+            <?php while ($row1 = $data_film_single->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $row1['id'] ?>" class="item2">
+                    <img src="<?= $row1['image_horizontal'] ?>">
+                    <div class="grid-content">
+                        <div class="grid-title">
+                            <?= $row1['quality'] ?>
+                        </div>
+                        <div class="grid-infos">
+                            <div class="grid-info">
+                                <span><?= $row1['name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <i class="fa fa-eye"></i>
+                                <span><?= $row1['num_view'] ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <?php endwhile ?>
         </div>
     </div>
 </div>
@@ -567,50 +328,56 @@
         <div class="section-header">
             Phim bộ mới
         </div>
+        <?php
+        $sql10 = "SELECT * FROM tbl_films WHERE typemovie = '2' ORDER BY num_view DESC LIMIT 1";
+        $data_film_seri_highview = mysqli_query($conn, $sql10);
+        ?>
         <div class="grid-container">
-            <a href="#" class="item1">
-                <img src="assets/images/images-grid/Natra-trung-sinh.jpg">
-                <div class="grid-content">
-                    <div class="grid-title">
-                        HD
-                    </div>
-                    <div class="grid-infos">
-                        <div class="grid-info">
-                            <span>Tân Phong Thần: Na Tra Trùng Sinh</span>
+            <?php while ($row4 = $data_film_seri_highview->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $row4['id'] ?>" class="item1">
+                    <img src="<?= $row4['image_horizontal'] ?>">
+                    <div class="grid-content">
+                        <div class="grid-title">
+                            <?= $row4['quality'] ?>
                         </div>
-                        <div class="grid-info">
-                            <span>New Gods: Nezha Reborn / Xin Shen Bang: Ne Zha ChongSheng</span>
-                        </div>
-                        <div class="grid-info">
-                            <i class="fa fa-eye"></i>
-                            <span>68.7K xem</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="item2">
-                <img src="assets/images/images-grid/Kong_skullisland.jpg">
-                <div class="grid-content">
-                    <div class="grid-title">
-                        HD
-                    </div>
-                    <div class="grid-infos">
-                        <div class="grid-info">
-                            <span>Godzilla: Đảo đầu lâu</span>
-                        </div>
-                        <div class="grid-info">
-                            <span>68.7K xem</span>
+                        <div class="grid-infos">
+                            <div class="grid-info">
+                                <span><?= $row4['name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <span><?= $row4['sub_name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <i class="fa fa-eye"></i>
+                                <span><?= $row4['num_view'] ?></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/daomobutky.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/doiquannguoichet.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/hainguoixala.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/nguoi-mandalorian.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/nuhoangbanggia.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/truyhon.jpg"></a>
-            <a href="#" class="item2"><img src="assets/images/images-grid/xmenevolution.jpg"></a>
+                </a>
+            <?php endwhile ?>
+            <?php
+            $sql8 = "SELECT * FROM tbl_films WHERE typemovie = '2' LIMIT 8";
+            $data_film_seri = mysqli_query($conn, $sql8);
+            ?>
+            <?php while ($row2 = $data_film_seri->fetch_assoc()) : ?>
+                <a href="detail_film.php?film_id=<?= $row2['id'] ?>" class="item2">
+                    <img src="<?= $row2['image_horizontal'] ?>">
+                    <div class="grid-content">
+                        <div class="grid-title">
+                            <?= $row2['quality'] ?>
+                        </div>
+                        <div class="grid-infos">
+                            <div class="grid-info">
+                                <span><?= $row2['name'] ?></span>
+                            </div>
+                            <div class="grid-info">
+                                <i class="fa fa-eye"></i>
+                                <span><?= $row2['num_view'] ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <?php endwhile ?>
         </div>
     </div>
 </div>
@@ -621,74 +388,26 @@
         <div class="section-header">
             Bảng xếp hạng
         </div>
+        <?php
+        $sql11 = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 5";
+        $data_rank_film = mysqli_query($conn, $sql11);
+        $rank = 1;
+        ?>
+
         <div class="list-rank">
-            <div class="rank-movie">
-                <p>1</p>
-                <a href="#"><img src="assets/images/cartoons/coco.jpg" alt=""></a>
-            </div>
-            <div class="rank-movie">
-                <p>2</p>
-                <a href="#"><img src="assets/images/cartoons/your-name.jpg" alt=""></a>
-            </div>
-            <div class="rank-movie">
-                <p>3</p>
-                <a href="#"><img src="assets/images/cartoons/over-the-moon.jpg" alt=""></a>
-            </div>
-            <div class="rank-movie">
-                <p>4</p>
-                <a href="#"><img src="assets/images/cartoons/croods.jpg" alt=""></a>
-            </div>
-            <div class="rank-movie">
-                <p>5</p>
-                <a href="#"><img src="assets/images/cartoons/demon-slayer.jpg" alt=""></a>
-            </div>
+            <?php while ($rank < 6 && $row5 = $data_rank_film->fetch_assoc()) : ?>
+                <div class="rank-movie">
+                    <p><?= $rank++ ?></p>
+                    <a href="#"><img src="<?= $row5['image_vertical'] ?>" alt=""></a>
+                </div>
+            <?php endwhile ?>
         </div>
+
     </div>
 </div>
 <!-- END RANK FILMS -->
-<!-- SPECIAL MOVIE SECTION -->
-<div class="section">
-    <div class="hero-slide-item">
-        <img src="assets/images/transformer-banner.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="hero-slide-item-content">
-            <div class="item-content-wraper">
-                <div class="item-content-title">
-                    Transformer
-                </div>
-                <div class="movie-infos">
-                    <div class="movie-info">
-                        <i class="bx bxs-star"></i>
-                        <span>9.5</span>
-                    </div>
-                    <div class="movie-info">
-                        <i class="bx bxs-time"></i>
-                        <span>120 mins</span>
-                    </div>
-                    <div class="movie-info">
-                        <span>HD</span>
-                    </div>
-                    <div class="movie-info">
-                        <span>16+</span>
-                    </div>
-                </div>
-                <div class="item-content-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                </div>
-                <div class="item-action">
-                    <a href="#" class="btn btn-hover">
-                        <i class="bx bxs-right-arrow"></i>
-                        <span>Xem ngay</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END SPECIAL MOVIE SECTION -->
-
 <!-- PRICING SECTION -->
-<!-- <div class="section">
+<div class="section">
     <div class="container">
         <div class="pricing">
             <div class="pricing-header">
@@ -769,7 +488,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- END PRICING SECTION -->
 
 <?php require_once("footer.php") ?>

@@ -393,7 +393,7 @@ a.movie-item:hover {
 
 .movie-item-title {
   color: var(--text-color);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   position: relative;
   font-weight: 700;
 }
@@ -795,7 +795,7 @@ footer .content {
   text-transform: uppercase;
 }
 .side-bar{
-  width: 30%;
+  width: 40%;
   float: right;
   margin-left: 30px;
   color: #777;
@@ -807,7 +807,7 @@ footer .content {
   margin-bottom: 10px;
 }
 .side-bar .film-side-bar a{
-  width: 60%;
+  width: 70%;
   height: 100%;
   overflow: hidden;
 
@@ -817,7 +817,7 @@ footer .content {
   height: 100%;
 }
 .side-bar .film-side-bar .info-film-side-bar{
-  width: 30%;
+  width: 60%;
   margin-left: 10px;
 }
 .side-bar .film-side-bar .info-film-side-bar a{

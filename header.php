@@ -35,25 +35,25 @@ require_once('./config/config_login_fb.php');
                         <a href="#">Thể loại</a>
                         <ul class="menu-area">
                             <ul>
-                                <li><a href="./category_detail.php">Hành động</a></li>
-                                <li><a href="#">Tình cảm</a></li>
-                                <li><a href="#">Hài hước</a></li>
-                                <li><a href="#">Khoa học</a></li>
-                                <li><a href="#">Kiếm hiệp</a></li>
+                                <li><a href="category_detail.php?category_id=1">Hành động</a></li>
+                                <li><a href="category_detail.php?category_id=2">Tình cảm</a></li>
+                                <li><a href="category_detail.php?category_id=3">Hài hước</a></li>
+                                <li><a href="category_detail.php?category_id=4">Khoa học</a></li>
+                                <li><a href="category_detail.php?category_id=5">Kiếm hiệp</a></li>
                             </ul>
                             <ul>
-                                <li><a href="#">Hoạt hình</a></li>
-                                <li><a href="#">Gia đình</a></li>
-                                <li><a href="#">Tâm lý</a></li>
-                                <li><a href="#">Trinh thám</a></li>
-                                <li><a href="#">Viễn tưởng</a></li>
+                                <li><a href="category_detail.php?category_id=6">Hoạt hình</a></li>
+                                <li><a href="category_detail.php?category_id=7">Gia đình</a></li>
+                                <li><a href="category_detail.php?category_id=8">Tâm lý</a></li>
+                                <li><a href="category_detail.php?category_id=9">Trinh thám</a></li>
+                                <li><a href="category_detail.php?category_id=10">Viễn tưởng</a></li>
                             </ul>
                             <ul>
-                                <li><a href="#">Kinh dị</a></li>
-                                <li><a href="#">Võ thuật</a></li>
-                                <li><a href="#">Cổ trang</a></li>
-                                <li><a href="#">Thể thao</a></li>
-                                <li><a href="#">Học đường</a></li>
+                                <li><a href="category_detail.php?category_id=11">Kinh dị</a></li>
+                                <li><a href="category_detail.php?category_id=12">Võ thuật</a></li>
+                                <li><a href="category_detail.php?category_id=13">Cổ trang</a></li>
+                                <li><a href="category_detail.php?category_id=14">Phiêu lưu</a></li>
+                                <li><a href="category_detail.php?category_id=15">Học đường</a></li>
                             </ul>
                         </ul>
                     </li>

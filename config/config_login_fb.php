@@ -19,7 +19,7 @@ try {
 if(isset($_SESSION['access_token'])){
     try {
         $fb->setDefaultAccessToken($_SESSION['access_token']);
-        $res = $fb->get('/me?locale=en_US&feilds=name,email');
+        $res = $fb->get('/me?fields=id,name');
         $user = $res->getGraphUser();
         // echo "Hello, " , $user->getField('name');
     } catch (Exception $exc) {
