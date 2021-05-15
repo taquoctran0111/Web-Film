@@ -4,10 +4,27 @@ include './config/config2.php';
 $title = "Phim hay";
 require_once("header.php");
 
-if (isset($_GET['film_id'])) $film_id = $_GET['film_id'];
-$sql1 = "SELECT * FROM tbl_films WHERE id = '$film_id'";
-$query_detail_film = mysqli_query($conn, $sql1);
+if (isset($_GET['film_id'])){
+    $film_id = $_GET['film_id'];
+} 
+$sql_detail_film = "SELECT * FROM tbl_films WHERE id = '$film_id'";
+$query_detail_film = mysqli_query($conn, $sql_detail_film);
 $r_detail_film = mysqli_fetch_assoc($query_detail_film);
+
+$nation_id = $r_detail_film['nation_id'];
+$sql_nation = "SELECT * FROM tbl_nations WHERE id = '$nation_id'";
+$query_nation = mysqli_query($conn, $sql_nation);
+$r_nation = mysqli_fetch_assoc($query_nation);
+
+$sql_category = "SELECT tbl_categories.name, tbl_categories.id FROM tbl_categories INNER JOIN tbl_listcategory ON tbl_categories.id = tbl_listcategory.category_id AND tbl_listcategory.film_id = '$film_id'";
+$r_category = $DB->query($sql_category);
+
+$sql_category_id = "SELECT category_id FROM tbl_listcategory WHERE film_id = '$film_id'";
+$r_categor_id = $DB->query($sql_category_id);
+$category_id = $r_categor_id[0]->category_id;
+
+$sql_same_movie = "SELECT * FROM tbl_films JOIN tbl_listcategory ON tbl_films.id = tbl_listcategory.film_id AND tbl_listcategory.category_id = '$category_id' LIMIT 6";
+$same_movie = $DB->query($sql_same_movie);
 
 ?>
 <div class="section" style="padding-top: 2.5em">
@@ -40,12 +57,6 @@ $r_detail_film = mysqli_fetch_assoc($query_detail_film);
                     <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
                 </div>
                 <hr class="style-one">
-                <?php
-                $nation_id = $r_detail_film['nation_id'];
-                $sql2 = "SELECT * FROM tbl_nations WHERE id = '$nation_id'";
-                $query_nation = mysqli_query($conn, $sql2);
-                $r_nation = mysqli_fetch_assoc($query_nation);
-                ?>
                 <div class="film-content">
                     <p>Quốc gia: <?= $r_nation['name'] ?></p>
                     <p>Năm sản xuất: <?= $r_detail_film['year'] ?></p>
@@ -54,11 +65,7 @@ $r_detail_film = mysqli_fetch_assoc($query_detail_film);
                     <p>Thời lượng: <?= $r_detail_film['duration'] ?> phút</p>
                     <p>Trạng thái: <?= $r_detail_film['status'] ?></p>
                     <p>Tên khác: <?= $r_detail_film['sub_name'] ?></p>
-                    <?php
-                    $sql3 = "SELECT tbl_categories.name FROM tbl_categories INNER JOIN tbl_listcategory ON tbl_categories.id = tbl_listcategory.category_id AND tbl_listcategory.film_id = '$film_id'";
-                    $r_category = $DB->query($sql3);
-                    ?>
-                    <p>Thể loại: <?php foreach ($r_category as $value) : ?> <a href="category_detail.php?category_id=1" class="category-redirect">
+                    <p>Thể loại: <?php foreach ($r_category as $value) : ?> <a href="category_detail.php?category_id=<?= $value->id ?>" class="category-redirect">
                                 <?php
                                         echo $value->name;
                                 ?></a>,
@@ -71,22 +78,14 @@ $r_detail_film = mysqli_fetch_assoc($query_detail_film);
                 </div>
             </div>
         </div>
-        <?php
-        $sql5 = "SELECT category_id FROM tbl_listcategory WHERE film_id = '$film_id'";
-        $category = $DB->query($sql5);
-        $a = $category[0]->category_id;
-        $sql4 = "SELECT * FROM tbl_films JOIN tbl_listcategory ON tbl_films.id = tbl_listcategory.film_id AND tbl_listcategory.category_id = '$a' LIMIT 6";
-        //echo("DEBUG:" . $sql4);
-        $same_movie = $DB->query($sql4);
-        ?>
         <div class="side-bar">
             <?php foreach ($same_movie as $value1) : ?>
                 <div class="film-side-bar">
-                    <a href="detail_film.php?film_id=<?=$value1->id?>" class="left"><img src="<?=$value1->image_horizontal?>" alt=""></a>
+                    <a href="detail_film.php?film_id=<?= $value1->id ?>" class="left"><img src="<?= $value1->image_horizontal ?>" alt=""></a>
                     <div class="info-film-side-bar">
-                        <a href="detail_film.php?film_id=<?=$value1->id?>"><?=$value1->name?></a>
-                        <p><?=$value1->duration?> phút</p>
-                        <p><i class="fa fa-eye"></i><?=$value1->num_view?></p>
+                        <a href="detail_film.php?film_id=<?= $value1->id ?>"><?= $value1->name ?></a>
+                        <p><?= $value1->duration ?> phút</p>
+                        <p><i class="fa fa-eye"></i><?= $value1->num_view ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>

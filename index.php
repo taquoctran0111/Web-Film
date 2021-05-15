@@ -1,6 +1,29 @@
 <?php
 require_once('./autoload/Autoload.php');
-require_once './config/config2.php';
+require_once('./config/config2.php');
+$sql_banner1 = "SELECT * FROM tbl_films WHERE id = '2'";
+$banner1 = $DB->query($sql_banner1);
+$sql_banner2 = "SELECT * FROM tbl_films WHERE id = '3'";
+$banner2 = $DB->query($sql_banner2);
+$sql_banner3 = "SELECT * FROM tbl_films WHERE id = '4'";
+$banner3 = $DB->query($sql_banner3);
+$sql_new_film = "SELECT * FROM tbl_films ORDER BY id DESC LIMIT 8";
+$data_new_films = mysqli_query($conn, $sql_new_film);
+$sql_suggest_film = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 6";
+$data_film_suggest = mysqli_query($conn, $sql_suggest_film);
+$sql_theater_film = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 10";
+$data_films_theater = mysqli_query($conn, $sql_theater_film);
+$sql_single_highview = "SELECT * FROM tbl_films WHERE typemovie = '3' ORDER BY num_view DESC LIMIT 1";
+$data_film_single_highview = mysqli_query($conn, $sql_single_highview);
+$sql_single_film = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 8";
+$data_film_single = mysqli_query($conn, $sql_single_film);
+$sql_seri_highview = "SELECT * FROM tbl_films WHERE typemovie = '2' ORDER BY num_view DESC LIMIT 1";
+$data_film_seri_highview = mysqli_query($conn, $sql_seri_highview);
+$sql_seri_film = "SELECT * FROM tbl_films WHERE typemovie = '2' LIMIT 8";
+$data_film_seri = mysqli_query($conn, $sql_seri_film);
+$sql_rank_film = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 5";
+$data_rank_film = mysqli_query($conn, $sql_rank_film);
+$rank = 1;
 $title = "Trang chủ";
 require_once("header.php");
 ?>
@@ -11,10 +34,6 @@ require_once("header.php");
     <div class="hero-slide">
         <div class="owl-carousel carousel-nav-center" id="hero-carousel">
             <!-- SLIDE ITEM -->
-            <?php
-            $sql1 = "SELECT * FROM tbl_films WHERE id = '2'";
-            $banner1 = $DB->query($sql1);
-            ?>
             <div class="hero-slide-item">
                 <?php foreach ($banner1 as $values1) : ?>
                     <img src="<?= $values1->image_horizontal ?>" alt="">
@@ -52,10 +71,6 @@ require_once("header.php");
             </div>
             <!-- END SLIDE ITEM -->
             <!-- SLIDE ITEM -->
-            <?php
-            $sql2 = "SELECT * FROM tbl_films WHERE id = '3'";
-            $banner2 = $DB->query($sql2);
-            ?>
             <div class="hero-slide-item">
                 <?php foreach ($banner2 as $values2) : ?>
                     <img src="<?= $values2->image_horizontal ?>" alt="">
@@ -96,10 +111,6 @@ require_once("header.php");
             </div>
             <!-- END SLIDE ITEM -->
             <!-- SLIDE ITEM -->
-            <?php
-            $sql3 = "SELECT * FROM tbl_films WHERE id = '4'";
-            $banner3 = $DB->query($sql3);
-            ?>
             <div class="hero-slide-item">
                 <?php foreach ($banner3 as $values3) : ?>
                     <img src="<?= $values3->image_horizontal ?>" alt="">
@@ -143,10 +154,6 @@ require_once("header.php");
     </div>
     <!-- END HERO SLIDE -->
     <!-- TOP MOVIES SLIDE -->
-    <?php
-    $sql4 = "SELECT * FROM tbl_films ORDER BY id DESC LIMIT 8";
-    $data_new_films = mysqli_query($conn, $sql4);;
-    ?>
     <div class="top-movies-slide">
         <div class="owl-carousel" id="top-movies-slide">
             <!-- MOVIE ITEM -->
@@ -189,10 +196,6 @@ require_once("header.php");
         <div class="section-header">
             Phim đề cử
         </div>
-        <?php
-        $sql6 = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 6";
-        $data_film_suggest = mysqli_query($conn, $sql6);
-        ?>
         <div class="movies-slide carousel-nav-center owl-carousel">
             <!-- MOVIE ITEM -->
             <?php while ($result_film_suggest = $data_film_suggest->fetch_assoc()) : ?>
@@ -232,10 +235,6 @@ require_once("header.php");
         <div class="section-header">
             Phim chiếu rạp
         </div>
-        <?php
-        $sql5 = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 10";
-        $data_films_theater = mysqli_query($conn, $sql5);
-        ?>
         <div class="grid-container-theater">
             <?php while ($row = $data_films_theater->fetch_assoc()) : ?>
                 <a href="detail_film.php?film_id=<?= $row['id'] ?>" class="item-theater">
@@ -267,10 +266,6 @@ require_once("header.php");
         <div class="section-header">
             Phim lẻ mới
         </div>
-        <?php
-        $sql9 = "SELECT * FROM tbl_films WHERE typemovie = '3' ORDER BY num_view DESC LIMIT 1";
-        $data_film_single_highview = mysqli_query($conn, $sql9);
-        ?>
         <div class="grid-container">
             <?php while ($row3 = $data_film_single_highview->fetch_assoc()) : ?>
                 <a href="detail_film.php?film_id=<?= $row3['id'] ?>" class="item1">
@@ -294,10 +289,6 @@ require_once("header.php");
                     </div>
                 </a>
             <?php endwhile ?>
-            <?php
-            $sql7 = "SELECT * FROM tbl_films WHERE typemovie = '3' LIMIT 8";
-            $data_film_single = mysqli_query($conn, $sql7);
-            ?>
             <?php while ($row1 = $data_film_single->fetch_assoc()) : ?>
                 <a href="detail_film.php?film_id=<?= $row1['id'] ?>" class="item2">
                     <img src="<?= $row1['image_horizontal'] ?>">
@@ -328,10 +319,6 @@ require_once("header.php");
         <div class="section-header">
             Phim bộ mới
         </div>
-        <?php
-        $sql10 = "SELECT * FROM tbl_films WHERE typemovie = '2' ORDER BY num_view DESC LIMIT 1";
-        $data_film_seri_highview = mysqli_query($conn, $sql10);
-        ?>
         <div class="grid-container">
             <?php while ($row4 = $data_film_seri_highview->fetch_assoc()) : ?>
                 <a href="detail_film.php?film_id=<?= $row4['id'] ?>" class="item1">
@@ -355,10 +342,6 @@ require_once("header.php");
                     </div>
                 </a>
             <?php endwhile ?>
-            <?php
-            $sql8 = "SELECT * FROM tbl_films WHERE typemovie = '2' LIMIT 8";
-            $data_film_seri = mysqli_query($conn, $sql8);
-            ?>
             <?php while ($row2 = $data_film_seri->fetch_assoc()) : ?>
                 <a href="detail_film.php?film_id=<?= $row2['id'] ?>" class="item2">
                     <img src="<?= $row2['image_horizontal'] ?>">
@@ -388,17 +371,11 @@ require_once("header.php");
         <div class="section-header">
             Bảng xếp hạng
         </div>
-        <?php
-        $sql11 = "SELECT * FROM tbl_films ORDER BY num_view DESC LIMIT 5";
-        $data_rank_film = mysqli_query($conn, $sql11);
-        $rank = 1;
-        ?>
-
         <div class="list-rank">
             <?php while ($rank < 6 && $row5 = $data_rank_film->fetch_assoc()) : ?>
                 <div class="rank-movie">
                     <p><?= $rank++ ?></p>
-                    <a href="#"><img src="<?= $row5['image_vertical'] ?>" alt=""></a>
+                    <a href="detail_film.php?film_id=<?= $row5['id'] ?>"><img src="<?= $row5['image_vertical'] ?>" alt=""></a>
                 </div>
             <?php endwhile ?>
         </div>

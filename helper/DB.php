@@ -34,9 +34,6 @@ class DB
                 }
             }
             $sql = explode(' ', $sql);
-
-            echo $sql;
-
             if ($sql[0] == 'SELECT') {
                 return "Không có bản ghi nào ";
             }

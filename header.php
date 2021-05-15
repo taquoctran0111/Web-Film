@@ -61,20 +61,20 @@ require_once('./config/config_login_fb.php');
                         <a href="#">Quốc gia</a>
                         <ul class="menu-area">
                             <ul>
-                                <li><a href="#">Việt nam</a></li>
-                                <li><a href="#">Nhật bản</a></li>
-                                <li><a href="#">Trung Quốc</a></li>
+                                <li><a href="menu_film.php?nation_id=1">Việt nam</a></li>
+                                <li><a href="menu_film.php?nation_id=2">Nhật bản</a></li>
+                                <li><a href="menu_film.php?nation_id=3">Trung Quốc</a></li>
                             </ul>
                             <ul>
-                                <li><a href="#">Mỹ</a></li>
-                                <li><a href="#">Anh</a></li>
-                                <li><a href="#">Hàn Quốc</a></li>
+                                <li><a href="menu_film.php?nation_id=4">Mỹ</a></li>
+                                <li><a href="menu_film.php?nation_id=5">Anh</a></li>
+                                <li><a href="menu_film.php?nation_id=6">Hàn Quốc</a></li>
                             </ul>
                         </ul>
                     </li>
-                    <li class="menu-dropdown"><a href="#">Phim lẻ</a></li>
-                    <li class="menu-dropdown"><a href="#">Phim bộ</a></li>
-                    <li class="menu-dropdown"><a href="#">Chiếu rạp</a></li>
+                    <li class="menu-dropdown"><a href="menu_film.php?type_movie=1">Phim lẻ</a></li>
+                    <li class="menu-dropdown"><a href="menu_film.php?type_movie=2">Phim bộ</a></li>
+                    <li class="menu-dropdown"><a href="menu_film.php?type_movie=3">Chiếu rạp</a></li>
                     <?php if (!Auth::customer() && !isset($_SESSION['access_token'])) : ?>
                         <a href="login.php" class="btn btn-hover" id="btn-login">
                             <span>Đăng nhập</span>
