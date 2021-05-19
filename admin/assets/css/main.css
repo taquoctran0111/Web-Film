@@ -8,7 +8,7 @@
 body{
   overflow-x: hidden;
 }
-.container {  
+.containerr {  
   position: relative;
   width: 100%;
 }
@@ -204,11 +204,12 @@ body{
 }
 .btn{
   position: relative;
-  padding: 5px 10px;
+  padding: 3px 7px;
   background: #03a9f4;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  margin-bottom: 5px;
 }
 .details table{
   width: 100%;

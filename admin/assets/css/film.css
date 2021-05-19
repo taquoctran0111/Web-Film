@@ -1,0 +1,87 @@
+.detailsFilm {
+  padding: 20px;
+  font-size: 13px;
+}
+/* .detailsFilm table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.detailsFilm table thead td{
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.detailsFilm table tbody td{
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.detailsFilm table thead td {
+  font-weight: 600;
+}
+.detailsFilm .recentFilms table tr {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.detailsFilm .recentFilms table tbody tr:last-child {
+  border-bottom: none;
+} */
+/* .detailsFilm .recentFilms table tbody tr:hover {
+  background: #03a9f4;
+  color: #fff;
+  cursor: pointer;
+} */
+/* .detailsFilm .recentFilms table tr td {
+  padding: 9px 5px;
+}
+.detailsFilm .recentFilms table thead tr td:last-child,
+.detailsFilm .recentFilms table tbody tr td:last-child {
+  text-align: center;
+}
+.detailsFilm .recentFilms table thead tr td:nth-child(2),
+.detailsFilm .recentFilms table tbody tr td:nth-child(2) {
+  text-align: left;
+  padding-right: 20px;
+}
+.detailsFilm .recentFilms table thead tr td:nth-child(3),
+.detailsFilm .recentFilms table tbody tr td:nth-child(3) {
+  text-align: left;
+}
+.detailsFilm .recentFilms table thead tr td:nth-child(4),
+.detailsFilm .recentFilms table tbody tr td:nth-child(4) {
+  text-align: center;
+}
+.detailsFilm .recentFilms table thead tr td:nth-child(5),
+.detailsFilm .recentFilms table tbody tr td:nth-child(5) {
+  text-align: center;
+}
+.detailsFilm .recentFilms table thead tr td:nth-child(6),
+.detailsFilm .recentFilms table tbody tr td:nth-child(6) {
+  text-align: center;
+} */
+.filmHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.filmHeader h2 {
+  font-weight: 600;
+}
+.editfilm{
+  position: relative;
+  margin-left: 15em;
+}
+.editfilm .groupform{
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.editfilm .groupform label{
+  width: 120px;
+}
+.editfilm .groupform input{
+  padding: 3px 8px;
+  outline: none;
+}
+.editfilm .groupform textarea{
+  padding: 3px 8px;
+  outline: none;
+}
