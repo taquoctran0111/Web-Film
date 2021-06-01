@@ -278,4 +278,13 @@ body{
 .details .recentCustomers table tr td{
   padding: 7px 10px;
 }
-
+.success{
+  color: #40a5ca;
+  margin-left: 15em;
+  margin-bottom: 10px;
+}
+.error{
+  color: red;
+  margin-left: 15em;
+  margin-bottom: 10px;
+}
