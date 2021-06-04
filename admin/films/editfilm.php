@@ -30,6 +30,10 @@ $resultTypeMovie = mysqli_query($conn, $queryTypeMovie);
 
 $sql_category = "SELECT tbl_categories.name, tbl_categories.id FROM tbl_categories INNER JOIN tbl_listcategory ON tbl_categories.id = tbl_listcategory.category_id AND tbl_listcategory.film_id = '$id'";
 $r_category = $DB->query($sql_category);
+// print_r($r_category[0]->id);
+
+$deleteCategory = "DELETE FROM tbl_listcategory WHERE film_id = '$id'";
+
 
 $queryCategories = "SELECT * FROM tbl_categories";
 $resultCategories = mysqli_query($conn, $queryCategories);
@@ -37,14 +41,29 @@ $resultCategories = mysqli_query($conn, $queryCategories);
 if (Input::hasPost('edit')) {
     $folderHorizontal = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/image-horizontal/';
     $folderVertical = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/image-vertical/';
+    $imageHorizontal = $data_film['image_horizontal'];
+    $imageVertical = $data_film['image_vertical'];
 
-    $fileImageHorizontal = $_FILES['imagehorizontal']['name'];
-    $filetmpImageHorizontal = $_FILES['imagehorizontal']['tmp_name'];
-    move_uploaded_file($filetmpImageHorizontal, $folderHorizontal . $fileImageHorizontal);
+    if ($_FILES['imagehorizontal']['name'] != '') {
+        $fileImageHorizontal = $_FILES['imagehorizontal']['name'];
+        $filetmpImageHorizontal = $_FILES['imagehorizontal']['tmp_name'];
+        move_uploaded_file($filetmpImageHorizontal, $folderHorizontal . $fileImageHorizontal);
+        $imageHorizontal = "assets/images/image-horizontal/" . $fileImageHorizontal;
+    }
+    if ($_FILES['imagevertical']['name'] != '') {
+        $fileImageVertical = $_FILES['imagevertical']['name'];
+        $filetmpImageVertical = $_FILES['imagevertical']['tmp_name'];
+        move_uploaded_file($filetmpImageVertical, $folderVertical . $fileImageVertical);
+        $imageVertical = "assets/images/image-vertical/" . $fileImageVertical;
+    }
 
-    $fileImageVertical = $_FILES['imagevertical']['name'];
-    $filetmpImageVertical = $_FILES['imagevertical']['tmp_name'];
-    move_uploaded_file($filetmpImageVertical, $folderVertical . $fileImageVertical);
+    $deleteCategory = "DELETE FROM tbl_listcategory WHERE film_id = '$id'";
+    $run_delete = mysqli_query($conn, $deleteCategory);
+    $category = $_POST['categories'];
+    foreach ($category as $value) {
+        $query = "INSERT INTO tbl_listcategory(film_id, category_id) VALUES ('$id','$value')";
+        $query_run = mysqli_query($conn, $query);
+    }
 
 
     $name = Input::post('name');
@@ -56,8 +75,7 @@ if (Input::hasPost('edit')) {
     $duration = Input::post('duration');
     $subtitle = Input::post('subtitle');
     $quality = Input::post('quality');
-    $imageHorizontal = "assets/images/image-horizontal/" . $fileImageHorizontal;
-    $imageVertical = "assets/images/image-vertical/" . $fileImageVertical;
+   
     $success = $DB->update('tbl_films', [
         'name' => $name,
         'sub_name' => $subname,
@@ -101,15 +119,15 @@ if (Input::hasPost('edit')) {
                 <form class="editfilm" method="post" enctype="multipart/form-data">
                     <div class="groupform">
                         <label for="inputName">Name</label>
-                        <input type="text" id="inputName" name="name" value="<?= $data_film['name'] ?>" style="width: 20em;">
+                        <input type="text" id="inputName" name="name" value="<?= $data_film['name'] ?>" style="width: 20em;" required>
                     </div>
                     <div class="groupform">
                         <label for="inputotherName">Other name</label>
-                        <input type="text" id="inputotherName" name="otherName" value="<?= $data_film['sub_name'] ?>" style="width: 20em;">
+                        <input type="text" id="inputotherName" name="otherName" value="<?= $data_film['sub_name'] ?>" style="width: 20em;" required>
                     </div>
                     <div class="groupform">
                         <label for="inputYear">Year</label>
-                        <input type="text" id="inputYear" name="year" value="<?= $data_film['year'] ?>">
+                        <input type="text" id="inputYear" name="year" value="<?= $data_film['year'] ?>" required>
                     </div>
                     <div class="groupform">
                         <label for="nation">Nation</label>
@@ -131,10 +149,10 @@ if (Input::hasPost('edit')) {
                     </div>
                     <div class="groupform">
                         <label for="typemovie">Categories</label>
-                        <select name="categories" id="categories" style="padding: 3px 8px; outline: none; width: 250px" multiple>
-                            <?php foreach ($r_category as $value) :?>
+                        <select name="categories[]" id="categories" style="padding: 3px 8px; outline: none; width: 250px" multiple>
+                            <?php foreach ($r_category as $value) : ?>
                                 <option value="<?= $value->id ?>" selected hidden><?= $value->name ?></option>
-                            <?php endforeach?>
+                            <?php endforeach ?>
                             <?php while ($rowCategories = mysqli_fetch_array($resultCategories)) : ?>
                                 <option value="<?= $rowCategories['id'] ?>"><?php echo $rowCategories['name']; ?></option>
                             <?php endwhile; ?>
@@ -142,19 +160,19 @@ if (Input::hasPost('edit')) {
                     </div>
                     <div class="groupform">
                         <label for="taDescription">Description</label>
-                        <textarea name="description" id="taDescription" cols="60" rows="7"><?= $data_film['description'] ?></textarea>
+                        <textarea name="description" id="taDescription" cols="50" rows="7"><?= $data_film['description'] ?></textarea>
                     </div>
                     <div class="groupform">
                         <label for="inputDuration">Durations(m)</label>
-                        <input type="text" id="inputDuration" name="duration" value="<?= $data_film['duration'] ?>">
+                        <input type="text" id="inputDuration" name="duration" value="<?= $data_film['duration'] ?> " required>
                     </div>
                     <div class="groupform">
                         <label for="inputSubtitle">Subtitle</label>
-                        <input type="text" id="inputSubtitle" name="subtitle" value="<?= $data_film['subtitle'] ?>">
+                        <input type="text" id="inputSubtitle" name="subtitle" value="<?= $data_film['subtitle'] ?>" required>
                     </div>
                     <div class="groupform">
                         <label for="inputQuality">Quality</label>
-                        <input type="text" id="inputQuality" name="quality" value="<?= $data_film['quality'] ?>">
+                        <input type="text" id="inputQuality" name="quality" value="<?= $data_film['quality'] ?>" required>
                     </div>
                     <div class="groupform">
                         <label for="inputIMGhorizontal">Image horizontal</label>
@@ -180,7 +198,7 @@ if (Input::hasPost('edit')) {
 </div>
 <?php require_once('../footer.php') ?>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#categories').chosen();
     })
 </script>

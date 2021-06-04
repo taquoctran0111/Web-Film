@@ -7,22 +7,35 @@ $resultNation = mysqli_query($conn, $queryNation);
 
 $queryTypeMovie = "SELECT * FROM tbl_typemovies";
 $resultTypeMovie = mysqli_query($conn, $queryTypeMovie);
+
+$queryCategories = "SELECT * FROM tbl_categories";
+$resultCategories = mysqli_query($conn, $queryCategories);
 if (!Auth::user()) {
     Redirect::url('admin/account/login.php');
 }
 if (Input::hasPost('add')) {
     $folderHorizontal = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/image-horizontal/';
     $folderVertical = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/image-vertical/';
+    $imageHorizontal = $imageVertical = "assets/images/empty.jpg";
 
-    $fileImageHorizontal = $_FILES['imagehorizontal']['name'];
-    $filetmpImageHorizontal = $_FILES['imagehorizontal']['tmp_name'];
-    move_uploaded_file($filetmpImageHorizontal, $folderHorizontal . $fileImageHorizontal);
+    if ($_FILES['imagehorizontal']['name'] != '') {
+        $fileImageHorizontal = $_FILES['imagehorizontal']['name'];
+        $filetmpImageHorizontal = $_FILES['imagehorizontal']['tmp_name'];
+        move_uploaded_file($filetmpImageHorizontal, $folderHorizontal . $fileImageHorizontal);
+        $imageHorizontal = "assets/images/image-horizontal/" . $fileImageHorizontal;
+    }
+    if ($_FILES['imagevertical']['name'] != '') {
+        $fileImageVertical = $_FILES['imagevertical']['name'];
+        $filetmpImageVertical = $_FILES['imagevertical']['tmp_name'];
+        move_uploaded_file($filetmpImageVertical, $folderVertical . $fileImageVertical);
+        $imageVertical = "assets/images/image-vertical/" . $fileImageVertical;
+    }
 
-    $fileImageVertical = $_FILES['imagevertical']['name'];
-    $filetmpImageVertical = $_FILES['imagevertical']['tmp_name'];
-    move_uploaded_file($filetmpImageVertical, $folderVertical . $fileImageVertical);
-
-
+    // $category = $_POST['categories'];
+    // foreach ($category as $value) {
+    //     $query = "INSERT INTO tbl_listcategory(film_id, category_id) VALUES ('36','$value')";
+    //     $query_run = mysqli_query($conn, $query);
+    // }
     $name = Input::post('name');
     $subname = Input::post('otherName');
     $year = Input::post('year');
@@ -32,8 +45,6 @@ if (Input::hasPost('add')) {
     $duration = Input::post('duration');
     $subtitle = Input::post('subtitle');
     $quality = Input::post('quality');
-    $imageHorizontal = "assets/images/image-horizontal/" . $fileImageHorizontal;
-    $imageVertical = "assets/images/image-vertical/" . $fileImageVertical;
     $success = $DB->create('tbl_films', [
         'name' => $name,
         'sub_name' => $subname,
@@ -76,15 +87,15 @@ if (Input::hasPost('add')) {
                 <form class="editfilm" method="post" enctype="multipart/form-data">
                     <div class="groupform">
                         <label for="inputName">Name</label>
-                        <input type="text" id="inputName" name="name" style="width: 20em;">
+                        <input type="text" id="inputName" name="name" style="width: 20em;" required>
                     </div>
                     <div class="groupform">
                         <label for="inputotherName">Other name</label>
-                        <input type="text" id="inputotherName" name="otherName" style="width: 20em;">
+                        <input type="text" id="inputotherName" name="otherName" style="width: 20em;" required>
                     </div>
                     <div class="groupform">
                         <label for="inputYear">Year</label>
-                        <input type="text" id="inputYear" name="year">
+                        <input type="text" id="inputYear" name="year" required>
                     </div>
                     <div class="groupform">
                         <label for="nation">Nation</label>
@@ -106,19 +117,19 @@ if (Input::hasPost('add')) {
                     </div>
                     <div class="groupform">
                         <label for="taDescription">Description</label>
-                        <textarea name="description" id="taDescription" cols="60" rows="7"></textarea>
+                        <textarea name="description" id="taDescription" cols="50" rows="7" ></textarea>
                     </div>
                     <div class="groupform">
                         <label for="inputDuration">Durations(m)</label>
-                        <input type="text" id="inputDuration" name="duration">
+                        <input type="text" id="inputDuration" name="duration" required>
                     </div>
                     <div class="groupform">
                         <label for="inputSubtitle">Subtitle</label>
-                        <input type="text" id="inputSubtitle" name="subtitle">
+                        <input type="text" id="inputSubtitle" name="subtitle" required>
                     </div>
                     <div class="groupform">
                         <label for="inputQuality">Quality</label>
-                        <input type="text" id="inputQuality" name="quality">
+                        <input type="text" id="inputQuality" name="quality" required>
                     </div>
                     <div class="groupform">
                         <label for="inputIMGhorizontal">Image horizontal</label>
@@ -143,3 +154,8 @@ if (Input::hasPost('add')) {
     </div>
 </div>
 <?php require_once('../footer.php') ?>
+<script>
+    $(document).ready(function() {
+        $('#categories').chosen();
+    })
+</script>

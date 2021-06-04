@@ -833,6 +833,33 @@ footer .content {
 .film-comment{
   display: none;
 }
+.film-comment .send-comment{
+  display: flex;
+  align-items: center;
+}
+.film-comment .send-comment input{
+  position: relative;
+  width: 94%;
+  height: 35px;
+  outline: none;
+  background-color: #181616;
+  border: 1px solid #444;
+  color: gray;
+  padding-left: 7px;
+  margin-left: 5px;
+}
+.film-comment .comment{
+  margin-top: 15px;
+  display: flex;
+}
+.film-comment .comment .user-comment{
+  line-height: 20px;
+  margin-top: 7px;
+  margin-left: 5px;
+}
+.film-comment .comment .user-comment .infor-user{
+  display: flex;
+}
 .film-infor-tab{
   display: flex;
   margin-top: 20px;

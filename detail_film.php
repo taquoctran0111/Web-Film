@@ -4,9 +4,9 @@ include './config/config2.php';
 $title = "Phim hay";
 require_once("header.php");
 
-if (isset($_GET['film_id'])){
+if (isset($_GET['film_id'])) {
     $film_id = $_GET['film_id'];
-} 
+}
 $sql_detail_film = "SELECT * FROM tbl_films WHERE id = '$film_id'";
 $query_detail_film = mysqli_query($conn, $sql_detail_film);
 $r_detail_film = mysqli_fetch_assoc($query_detail_film);
@@ -26,6 +26,19 @@ $category_id = $r_categor_id[0]->category_id;
 $sql_same_movie = "SELECT * FROM tbl_films JOIN tbl_listcategory ON tbl_films.id = tbl_listcategory.film_id AND tbl_listcategory.category_id = '$category_id' LIMIT 6";
 $same_movie = $DB->query($sql_same_movie);
 
+$sqlComment = "SELECT * FROM tbl_comments WHERE film_id = '$film_id'";
+$queryComment = mysqli_query($conn, $sqlComment);
+
+// if (Auth::customer()) {
+//     $user_name = Auth::customer()->fullname;
+//     if (Input::hasPost('sendcomment')) {
+//         $content = Input::post('contentComment');
+//         if ($content != '') {
+//             $query = "INSERT INTO tbl_comments(film_id,user_name,content,time_comment) VALUES ('$film_id','$user_name','$content', NOW())";
+//             $runQuery = mysqli_query($conn, $query);
+//         }
+//     }
+// }
 ?>
 <div class="section" style="padding-top: 2.5em">
     <div class="container-detail" style="padding-left: 10em ; ">
@@ -71,11 +84,29 @@ $same_movie = $DB->query($sql_same_movie);
                                 ?></a>,
                         <?php endforeach; ?>
                     <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
-
                 </div>
-                <div class="film-comment">
-                    <p>Éo có bình luận nào :v</p>
-                </div>
+                <form class="film-comment" method="post">
+                    <div class="send-comment">
+                        <img src="assets/images/user.png" alt="" style="width: 9%;">
+                        <input type="hidden" name="comment_id" id="commentId" placeholder="Name" />
+                        <input type="text" id="contentComment" name="contentComment" autocomplete="off">
+                    </div>
+                    <button name="sendcomment" id = "sendcomment" hidden></button>
+                    <?php while ($result_comment = $queryComment->fetch_assoc()) : ?>
+                        <div class="comment">
+                            <div class="img-user" style="width: 9%;">
+                                <img src="assets/images/user.png" alt="" style="width: 100%;">
+                            </div>
+                            <div class="user-comment">
+                                <div class="infor-user">
+                                    <p style="color: #03a9f4"><?= $result_comment['user_name'] ?></p>
+                                    <p style="margin-left: 8px; font-size: 12px"><?= $result_comment['time_comment'] ?></p>
+                                </div>
+                                <p><?= $result_comment['content'] ?></p>
+                            </div>
+                        </div>
+                    <?php endwhile ?>
+                </form>
             </div>
         </div>
         <div class="side-bar">
@@ -105,5 +136,6 @@ $same_movie = $DB->query($sql_same_movie);
         document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
         document.querySelector(".btn-infor").style = "border: none";
     })
+    
 </script>
 <?php require_once 'footer.php'; ?>
