@@ -98,7 +98,7 @@ require_once('./config/config_login_fb.php');
                                 <a href="#"><?= Auth::customer()->fullname; ?></a>
                                 <ul class="menu-area">
                                     <ul>
-                                        <li><a href="#">Thay đổi thông tin</a></li>
+                                        <li><a href="info_account.php?userid=<?= Auth::customer()->id; ?>">Thay đổi thông tin</a></li>
                                         <li><a href="logout.php">Đăng xuất</a></li>
                                     </ul>
                                 </ul>

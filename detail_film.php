@@ -29,16 +29,12 @@ $same_movie = $DB->query($sql_same_movie);
 $sqlComment = "SELECT * FROM tbl_comments WHERE film_id = '$film_id'";
 $queryComment = mysqli_query($conn, $sqlComment);
 
-// if (Auth::customer()) {
-//     $user_name = Auth::customer()->fullname;
-//     if (Input::hasPost('sendcomment')) {
-//         $content = Input::post('contentComment');
-//         if ($content != '') {
-//             $query = "INSERT INTO tbl_comments(film_id,username,parent_comment_id,content,time) VALUES ('$film_id','$user_name','0','$content', NOW())";
-//             $runQuery = mysqli_query($conn, $query);
-//         }
-//     }
-// }
+if(Auth::customer()){
+    $user_name = Auth::customer()->fullname;
+}
+else{
+    $user_name = "Khách";
+}
 ?>
 <div class="section" style="padding-top: 2.5em">
     <div class="container-detail" style="padding-left: 10em ; ">
@@ -86,12 +82,8 @@ $queryComment = mysqli_query($conn, $sqlComment);
                     <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
                 </div>
                 <form method="POST" id="commentForm" class="film-comment">
-                    <!-- <div class="form-group">
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name" required />
-                    </div>
-                    <input type="text" id="comment" name="comment" autocomplete="off"> -->
                     <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
-                    <input type="hidden" name="name" id="name" value="<?php echo Auth::customer()->fullname ?>" />
+                    <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
                     <div class="send-comment">
                         <img src="assets/images/user.png" alt="" style="width: 9%;">
                         <input type="text" id="comment" name="comment" autocomplete="off">

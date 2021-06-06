@@ -932,23 +932,30 @@ hr.style-one {
   width: 20px;
   /* width: 20px; */
 }
-.form-login .lock-icon-2{
+.form-login .lock-icon-3{
   position: absolute;
   top: 194px;
   left: 70px;
   width: 20px;
   /* width: 20px; */
 }
+.form-login .lock-icon-2{
+  position: absolute;
+  top: 244px;
+  left: 70px;
+  width: 20px;
+  /* width: 20px; */
+}
 .form-login .name-icon{
   position: absolute;
-  top: 248px;
+  top: 298px;
   left: 70px;
   width: 20px;
   /* width: 20px; */
 }
 .form-login .email-icon{
   position: absolute;
-  top: 300px;
+  top: 350px;
   left: 70px;
   width: 18px;
   /* width: 20px; */
