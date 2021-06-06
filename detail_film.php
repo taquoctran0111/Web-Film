@@ -34,7 +34,7 @@ $queryComment = mysqli_query($conn, $sqlComment);
 //     if (Input::hasPost('sendcomment')) {
 //         $content = Input::post('contentComment');
 //         if ($content != '') {
-//             $query = "INSERT INTO tbl_comments(film_id,user_name,content,time_comment) VALUES ('$film_id','$user_name','$content', NOW())";
+//             $query = "INSERT INTO tbl_comments(film_id,username,parent_comment_id,content,time) VALUES ('$film_id','$user_name','0','$content', NOW())";
 //             $runQuery = mysqli_query($conn, $query);
 //         }
 //     }
@@ -85,28 +85,24 @@ $queryComment = mysqli_query($conn, $sqlComment);
                         <?php endforeach; ?>
                     <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
                 </div>
-                <form class="film-comment" method="post">
+                <form method="POST" id="commentForm" class="film-comment">
+                    <!-- <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name" required />
+                    </div>
+                    <input type="text" id="comment" name="comment" autocomplete="off"> -->
+                    <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
+                    <input type="hidden" name="name" id="name" value="<?php echo Auth::customer()->fullname ?>" />
                     <div class="send-comment">
                         <img src="assets/images/user.png" alt="" style="width: 9%;">
-                        <input type="hidden" name="comment_id" id="commentId" placeholder="Name" />
-                        <input type="text" id="contentComment" name="contentComment" autocomplete="off">
+                        <input type="text" id="comment" name="comment" autocomplete="off">
                     </div>
-                    <button name="sendcomment" id = "sendcomment" hidden></button>
-                    <?php while ($result_comment = $queryComment->fetch_assoc()) : ?>
-                        <div class="comment">
-                            <div class="img-user" style="width: 9%;">
-                                <img src="assets/images/user.png" alt="" style="width: 100%;">
-                            </div>
-                            <div class="user-comment">
-                                <div class="infor-user">
-                                    <p style="color: #03a9f4"><?= $result_comment['user_name'] ?></p>
-                                    <p style="margin-left: 8px; font-size: 12px"><?= $result_comment['time_comment'] ?></p>
-                                </div>
-                                <p><?= $result_comment['content'] ?></p>
-                            </div>
-                        </div>
-                    <?php endwhile ?>
+                    <div class="form-group">
+                        <input type="hidden" name="commentId" id="commentId" value="0" />
+                        <button type="submit" name="submit" id="submit" hidden></button>
+                    </div>
+                    <div id="showComments"></div>
                 </form>
+
             </div>
         </div>
         <div class="side-bar">
@@ -136,6 +132,6 @@ $queryComment = mysqli_query($conn, $sqlComment);
         document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
         document.querySelector(".btn-infor").style = "border: none";
     })
-    
 </script>
+<script src="comment/comment.js"></script>
 <?php require_once 'footer.php'; ?>
