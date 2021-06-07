@@ -17,7 +17,10 @@ $data = $DB->query($query);
             <div class="recentFilms">
                 <div class="filmHeader">
                     <h2 style="font-size: 25px;">List Films</h2>
-                    <a href="../films/addfilm.php" class = "btn">Add film</a>
+                    <div>
+                        <a href="../films/addfilm.php" class="btn">Add film</a>
+                        <a href="../films/addepisodes.php" class="btn">Add episodes</a>
+                    </div>
                 </div>
                 <table id="films_data" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
@@ -46,13 +49,13 @@ $data = $DB->query($query);
                                 <td><?= $row['num_view'] ?></td>
                                 <td><?= $row['quality'] ?></td>
                                 <td class="text-center">
-                                    <a href="editfilm.php?id_film=<?=$row['id']?>">
-                                        <b class='badge badge-warning status-Content'  style="padding: 10px">Edit</b>
+                                    <a href="editfilm.php?id_film=<?= $row['id'] ?>">
+                                        <b class='badge badge-warning status-Content' style="padding: 10px">Edit</b>
                                     </a>
                                 </td>
                                 <td class="text-center">
                                     <a href="#">
-                                        <b class='badge badge-danger status-Content' type = "button" style="padding: 10px" data-toggle="modal" data-target="#exampleModal-<?= $row['id'] ?>">Delete</b>
+                                        <b class='badge badge-danger status-Content' type="button" style="padding: 10px" data-toggle="modal" data-target="#exampleModal-<?= $row['id'] ?>">Delete</b>
                                     </a>
                                 </td>
                             </tr>
@@ -66,7 +69,7 @@ $data = $DB->query($query);
 </div>
 <?php if (is_array($data)) : ?>
     <?php foreach ($data as $item) : ?>
-        <div class="modal fade" id="exampleModal-<?=$item->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal-<?= $item->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -80,7 +83,7 @@ $data = $DB->query($query);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="../films/deletefilm.php?id=<?=$item->id?>" class="btn btn-primary">Delete</a>
+                        <a href="../films/deletefilm.php?id=<?= $item->id ?>" class="btn btn-primary">Delete</a>
                     </div>
                 </div>
             </div>

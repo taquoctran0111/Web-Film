@@ -7,6 +7,9 @@ require_once("header.php");
 if (isset($_GET['film_id'])) {
     $film_id = $_GET['film_id'];
 }
+if (isset($_GET['episode_id'])) {
+    $episode_id = $_GET['episode_id'];
+}
 $sql_detail_film = "SELECT * FROM tbl_films WHERE id = '$film_id'";
 $query_detail_film = mysqli_query($conn, $sql_detail_film);
 $r_detail_film = mysqli_fetch_assoc($query_detail_film);
@@ -29,10 +32,14 @@ $same_movie = $DB->query($sql_same_movie);
 $sqlComment = "SELECT * FROM tbl_comments WHERE film_id = '$film_id'";
 $queryComment = mysqli_query($conn, $sqlComment);
 
-if(Auth::customer()){
+$typemovie = $r_detail_film['typemovie'];
+
+$queryepisode = "SELECT * FROM tbl_episodes WHERE film_id = '$film_id'";
+$runqueryepisode = mysqli_query($conn, $queryepisode);
+
+if (Auth::customer()) {
     $user_name = Auth::customer()->fullname;
-}
-else{
+} else {
     $user_name = "Khách";
 }
 ?>
@@ -61,40 +68,81 @@ else{
             <div class="infor-film">
                 <h2><?= $r_detail_film['name'] ?></h2>
                 <p>Lượt xem: <?= $r_detail_film['num_view'] ?></p>
-                <div class="film-infor-tab">
-                    <p id="infor" class="btn-infor">Thông tin</p>
-                    <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
-                </div>
-                <hr class="style-one">
-                <div class="film-content">
-                    <p>Quốc gia: <?= $r_nation['name'] ?></p>
-                    <p>Năm sản xuất: <?= $r_detail_film['year'] ?></p>
-                    <p>Chất lượng: <?= $r_detail_film['quality'] ?></p>
-                    <p>Âm thanh: <?= $r_detail_film['subtitle'] ?></p>
-                    <p>Thời lượng: <?= $r_detail_film['duration'] ?> phút</p>
-                    <p>Trạng thái: <?= $r_detail_film['status'] ?></p>
-                    <p>Tên khác: <?= $r_detail_film['sub_name'] ?></p>
-                    <p>Thể loại: <?php foreach ($r_category as $value) : ?> <a href="category_detail.php?category_id=<?= $value->id ?>" class="category-redirect">
-                                <?php
-                                        echo $value->name;
-                                ?></a>,
-                        <?php endforeach; ?>
-                    <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
-                </div>
-                <form method="POST" id="commentForm" class="film-comment">
-                    <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
-                    <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
-                    <div class="send-comment">
-                        <img src="assets/images/user.png" alt="" style="width: 9%;">
-                        <input type="text" id="comment" name="comment" autocomplete="off">
+                <?php if ($typemovie != 2) : ?>
+                    <div class="film-infor-tab">
+                        <p id="infor" class="btn-infor">Thông tin</p>
+                        <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
                     </div>
-                    <div class="form-group">
-                        <input type="hidden" name="commentId" id="commentId" value="0" />
-                        <button type="submit" name="submit" id="submit" hidden></button>
+                    <hr class="style-one">
+                    <div class="film-content">
+                        <p>Quốc gia: <?= $r_nation['name'] ?></p>
+                        <p>Năm sản xuất: <?= $r_detail_film['year'] ?></p>
+                        <p>Chất lượng: <?= $r_detail_film['quality'] ?></p>
+                        <p>Âm thanh: <?= $r_detail_film['subtitle'] ?></p>
+                        <p>Thời lượng: <?= $r_detail_film['duration'] ?> phút</p>
+                        <p>Trạng thái: <?= $r_detail_film['status'] ?></p>
+                        <p>Tên khác: <?= $r_detail_film['sub_name'] ?></p>
+                        <p>Thể loại: <?php foreach ($r_category as $value) : ?> <a href="category_detail.php?category_id=<?= $value->id ?>" class="category-redirect">
+                                    <?php
+                                            echo $value->name;
+                                    ?></a>,
+                            <?php endforeach; ?>
+                        <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
                     </div>
-                    <div id="showComments"></div>
-                </form>
-
+                    <form method="POST" id="commentForm" class="film-comment">
+                        <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
+                        <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
+                        <div class="send-comment">
+                            <img src="assets/images/user.png" alt="" style="width: 9%;">
+                            <input type="text" id="comment" name="comment" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="commentId" id="commentId" value="0" />
+                            <button type="submit" name="submit" id="submit" hidden></button>
+                        </div>
+                        <div id="showComments"></div>
+                    </form>
+                <?php else : ?>
+                    <div class="film-infor-tab">
+                        <p id="infor" class="btn-infor">Thông tin</p>
+                        <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
+                        <p id="episode" class="btn-episode" style="margin-left: 20px; cursor: pointer;">Tập phim</p>
+                    </div>
+                    <hr class="style-one">
+                    <div class="film-content">
+                        <p>Quốc gia: <?= $r_nation['name'] ?></p>
+                        <p>Năm sản xuất: <?= $r_detail_film['year'] ?></p>
+                        <p>Chất lượng: <?= $r_detail_film['quality'] ?></p>
+                        <p>Âm thanh: <?= $r_detail_film['subtitle'] ?></p>
+                        <p>Tên khác: <?= $r_detail_film['sub_name'] ?></p>
+                        <p>Thể loại: <?php foreach ($r_category as $value) : ?> <a href="category_detail.php?category_id=<?= $value->id ?>" class="category-redirect">
+                                    <?php
+                                            echo $value->name;
+                                    ?></a>,
+                            <?php endforeach; ?>
+                        <p style="margin-top: 10px;"><?= $r_detail_film['description'] ?></p>
+                    </div>
+                    <form method="POST" id="commentForm" class="film-comment">
+                        <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
+                        <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
+                        <div class="send-comment">
+                            <img src="assets/images/user.png" alt="" style="width: 9%;">
+                            <input type="text" id="comment" name="comment" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="commentId" id="commentId" value="0" />
+                            <button type="submit" name="submit" id="submit" hidden></button>
+                        </div>
+                        <div id="showComments"></div>
+                    </form>
+                    <div class="film-episode" id="episodeForm">
+                        <div class="episode-name">
+                            <?php while ($result_episode = mysqli_fetch_assoc($runqueryepisode)) : ?>
+                                <a href="detail_film.php?film_id=<?= $r_detail_film['id'] ?>&episode_id=<?php echo $result_episode['episode_id'] ?>" class="name"><?php echo $result_episode['episode_name'] ?></a>
+                            <?php endwhile ?>
+                        </div>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
         <div class="side-bar">
@@ -114,15 +162,27 @@ else{
 <script>
     document.getElementById("infor").addEventListener("click", function() {
         document.querySelector(".film-comment").style.display = "none";
+        document.querySelector(".film-episode").style.display = "none";
         document.querySelector(".film-content").style.display = "block";
         document.querySelector(".btn-infor").style = "border-bottom: 2px solid #40a5ca; ";
         document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
+        document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
     })
     document.getElementById("comment").addEventListener("click", function() {
         document.querySelector(".film-content").style.display = "none";
+        document.querySelector(".film-episode").style.display = "none";
         document.querySelector(".film-comment").style.display = "block";
         document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
         document.querySelector(".btn-infor").style = "border: none";
+        document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
+    })
+    document.getElementById("episode").addEventListener("click", function() {
+        document.querySelector(".film-content").style.display = "none";
+        document.querySelector(".film-comment").style.display = "none";
+        document.querySelector(".film-episode").style.display = "block";
+        document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
+        document.querySelector(".btn-infor").style = "border: none";
+        document.querySelector(".btn-episode").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
     })
 </script>
 <script src="comment/comment.js"></script>

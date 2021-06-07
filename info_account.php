@@ -24,15 +24,15 @@ if (Input::hasPost('update')) {
             ], $userid);
 
             if ($success === true) {
-                $alertSuccess = "Edit success";
+                $alertSuccess = "Cập nhật thành công";
             } else {
                 $alertErr = $success;
             }
         } else {
-            $alertErr = "Passwords are not the same!";
+            $alertErr = "Mật khẩu không giống nhau!";
         }
     } else {
-        $alertErr = "Old password not match!";
+        $alertErr = "Mật khẩu cũ không đúng!";
     }
 }
 $title = "Đăng ký";
@@ -64,7 +64,7 @@ require_once("header.php");
             <input type="text" name="fullname" placeholder="Tên hiển thị" value="<?php echo $resultuser['fullname'] ?>" required><br>
             <img src="assets/images/icon/email.png" class="email-icon" alt="">
             <input type="email" name="email" id="" placeholder="Email" value="<?php echo $resultuser['email'] ?>" required><br>
-            <button type="submit" name="update">Thay đổi</button><br>
+            <button type="submit" name="update">Cập nhật</button><br>
         </form>
     </div>
 </div>
