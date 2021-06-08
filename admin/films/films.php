@@ -19,7 +19,7 @@ $data = $DB->query($query);
                     <h2 style="font-size: 25px;">List Films</h2>
                     <div>
                         <a href="../films/addfilm.php" class="btn">Add film</a>
-                        <a href="../films/addepisodes.php" class="btn">Add episodes</a>
+                        <a href="../films/episodes.php" class="btn">Film Episodes</a>
                     </div>
                 </div>
                 <table id="films_data" class="table table-striped table-bordered" cellspacing="0" width="100%">

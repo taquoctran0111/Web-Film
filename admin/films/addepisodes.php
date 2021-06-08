@@ -5,21 +5,31 @@ require_once('../../autoload/Autoload.php');
 if (!Auth::user()) {
     Redirect::url('admin/account/login.php');
 }
-$filmname = Input::post('filmname');
+if (isset($_GET['id_film'])) {
+    $filmid = $_GET['id_film'];
+}
+
 $episodename = Input::post('episodename');
 
-$queryidfilm = "SELECT tbl_films.id from tbl_films WHERE tbl_films.name = '$filmname'";
-$runqueryidfilm = mysqli_query($conn, $queryidfilm);
-$resultidfilm = mysqli_fetch_assoc($runqueryidfilm);
+$querynamefilm = "SELECT tbl_films.name from tbl_films WHERE tbl_films.id = '$filmid'";
+$runquerynamefilm = mysqli_query($conn, $querynamefilm);
+$resultnamefilm = mysqli_fetch_assoc($runquerynamefilm);
 
-$querytypemovie = "SELECT tbl_films.typemovie from tbl_films WHERE tbl_films.name = '$filmname'";
-$runquerytypemovie = mysqli_query($conn,$querytypemovie);
+$querytypemovie = "SELECT tbl_films.typemovie from tbl_films WHERE tbl_films.id = '$filmid'";
+$runquerytypemovie = mysqli_query($conn, $querytypemovie);
 $resulttypemovie = mysqli_fetch_assoc($runquerytypemovie);
 $typemovie = $resulttypemovie['typemovie'];
+
+$queryepisodename = "SELECT tbl_episodes.episode_name FROM tbl_episodes WHERE tbl_episodes.episode_name = '$episodename' AND tbl_episodes.film_id = '$filmid'";
+$runepisodename = mysqli_query($conn, $queryepisodename);
+$resultepisodename = mysqli_fetch_assoc($runepisodename);
+
+$querylistepisode = "SELECT tbl_episodes.episode_name FROM tbl_episodes WHERE tbl_episodes.film_id = '$filmid'";
+$resultlistepisode = $DB->query($querylistepisode);
+
 if (Input::hasPost('addepisode')) {
-    if($resultidfilm!=''){
-        if($typemovie == '2'){
-            $filmid = $resultidfilm["id"];
+    if ($typemovie == '2') {
+        if($resultepisodename == ''){
             $success = $DB->create('tbl_episodes', [
                 'film_id' => $filmid,
                 'episode_name' => $episodename,
@@ -30,12 +40,11 @@ if (Input::hasPost('addepisode')) {
                 $error = "Add episode fail!";
             }
         }
-       else{
-           $error = "Require series film!";
-       }
-    }
-    else{
-        $error = "Film don't exist!";
+        else{
+            $error = "Episode is exist!";   
+        }
+    } else {
+        $error = "Require series film!";
     }
 }
 ?>
@@ -47,6 +56,9 @@ if (Input::hasPost('addepisode')) {
             <div class="recentFilms">
                 <div class="filmHeader">
                     <h2 style="font-size: 25px;">Add Episode</h2>
+                    <div>
+                        <a href="../films/episodes.php" class="btn">Back</a>
+                    </div>
                 </div>
                 <?php if (isset($alertSuccess)) : ?>
                     <div class="success">
@@ -61,7 +73,15 @@ if (Input::hasPost('addepisode')) {
                 <form action="" method="post" class="editfilm">
                     <div class="groupform">
                         <label for="inputName">Film name</label>
-                        <input type="text" id="inputFilmName" name="filmname" style="width: 20em;" required>
+                        <input type="text" id="inputFilmName" name="filmname" style="width: 20em;" value="<?php echo $resultnamefilm['name'] ?>" required disabled>
+                    </div>
+                    <div class="groupform">
+                        <label for="inputotherName">Episode Film</label>
+                        <input type="text" id="inputEpisodeFilm" name="episodefilm" value = "<?php
+                            foreach($resultlistepisode as $value){
+                                echo $value->episode_name . ', ';
+                            }
+                        ?>" style="width: 20em;" required disabled>
                     </div>
                     <div class="groupform">
                         <label for="inputotherName">Episode name</label>

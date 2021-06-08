@@ -1012,7 +1012,7 @@ hr.style-one {
   border-radius: 5px;
   margin-right: 5px;
 }
-.film-episode .episode-name .name .active {
+.film-episode .episode-name .active{
   background-color: #40a5ca;
   color: #221f1f;
   border: 1px solid #40a5ca;

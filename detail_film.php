@@ -7,8 +7,18 @@ require_once("header.php");
 if (isset($_GET['film_id'])) {
     $film_id = $_GET['film_id'];
 }
+$queryepisode = "SELECT * FROM tbl_episodes WHERE film_id = '$film_id'";
+$runqueryepisode = mysqli_query($conn, $queryepisode);
+
 if (isset($_GET['episode_id'])) {
     $episode_id = $_GET['episode_id'];
+    $queryvideoepisode = "SELECT * FROM tbl_episodes WHERE film_id = '$film_id' AND episode_id = '$episode_id'";
+    $runvideoepisode = mysqli_query($conn, $queryvideoepisode);
+    $resultvideoepisode = mysqli_fetch_assoc($runvideoepisode);
+} elseif (!isset($_GET['episode_id'])) {
+    $queryvideoepisode = "SELECT * FROM tbl_films WHERE id = '$film_id'";
+    $runvideoepisode = mysqli_query($conn, $queryvideoepisode);
+    $resultvideoepisode  = mysqli_fetch_assoc($runvideoepisode);
 }
 $sql_detail_film = "SELECT * FROM tbl_films WHERE id = '$film_id'";
 $query_detail_film = mysqli_query($conn, $sql_detail_film);
@@ -37,6 +47,8 @@ $typemovie = $r_detail_film['typemovie'];
 $queryepisode = "SELECT * FROM tbl_episodes WHERE film_id = '$film_id'";
 $runqueryepisode = mysqli_query($conn, $queryepisode);
 
+
+
 if (Auth::customer()) {
     $user_name = Auth::customer()->fullname;
 } else {
@@ -44,31 +56,33 @@ if (Auth::customer()) {
 }
 ?>
 <div class="section" style="padding-top: 2.5em">
+    <input type="hidden" id="typemovie" value="<?php echo $typemovie ?>">
     <div class="container-detail" style="padding-left: 10em ; ">
-        <div class="detail-movie">
-            <div class="watch-area">
-                <video width="100%" height="50%" controls autoplay>
-                    <source src="<?= $r_detail_film['video'] ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="rating-area">
-                <p style="color: #777">Đánh giá phim: </p>
-                <input type="radio" name="rate" id="rate-1">
-                <label for="rate-1" class="fa fa-star"></label>
-                <input type="radio" name="rate" id="rate-2">
-                <label for="rate-2" class="fa fa-star"></label>
-                <input type="radio" name="rate" id="rate-3">
-                <label for="rate-3" class="fa fa-star"></label>
-                <input type="radio" name="rate" id="rate-4">
-                <label for="rate-4" class="fa fa-star"></label>
-                <input type="radio" name="rate" id="rate-5">
-                <label for="rate-5" class="fa fa-star"></label>
-            </div>
-            <div class="infor-film">
-                <h2><?= $r_detail_film['name'] ?></h2>
-                <p>Lượt xem: <?= $r_detail_film['num_view'] ?></p>
-                <?php if ($typemovie != 2) : ?>
+        <?php if ($typemovie != 2) : ?>
+            <div class="detail-movie">
+                <div class="watch-area">
+                    <video width="100%" height="50%" controls autoplay>
+                        <source src="<?= $r_detail_film['video'] ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="rating-area">
+                    <p style="color: #777">Đánh giá phim: </p>
+                    <input type="radio" name="rate" id="rate-1">
+                    <label for="rate-1" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2">
+                    <label for="rate-2" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3">
+                    <label for="rate-3" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4">
+                    <label for="rate-4" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-5">
+                    <label for="rate-5" class="fa fa-star"></label>
+                </div>
+                <div class="infor-film">
+                    <h2><?= $r_detail_film['name'] ?></h2>
+                    <p>Lượt xem: <?= $r_detail_film['num_view'] ?></p>
+
                     <div class="film-infor-tab">
                         <p id="infor" class="btn-infor">Thông tin</p>
                         <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
@@ -102,7 +116,32 @@ if (Auth::customer()) {
                         </div>
                         <div id="showComments"></div>
                     </form>
-                <?php else : ?>
+                </div>
+            </div>
+        <?php else : ?>
+            <div class="detail-movie">
+                <div class="watch-area">
+                    <video width="100%" height="50%" controls autoplay>
+                        <source src="<?= $resultvideoepisode['video'] ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="rating-area">
+                    <p style="color: #777">Đánh giá phim: </p>
+                    <input type="radio" name="rate" id="rate-1">
+                    <label for="rate-1" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2">
+                    <label for="rate-2" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3">
+                    <label for="rate-3" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4">
+                    <label for="rate-4" class="fa fa-star"></label>
+                    <input type="radio" name="rate" id="rate-5">
+                    <label for="rate-5" class="fa fa-star"></label>
+                </div>
+                <div class="infor-film">
+                    <h2><?= $r_detail_film['name'] ?></h2>
+                    <p>Lượt xem: <?= $r_detail_film['num_view'] ?></p>
                     <div class="film-infor-tab">
                         <p id="infor" class="btn-infor">Thông tin</p>
                         <p id="comment" class="btn-comment" style="margin-left: 20px; cursor: pointer;">Bình luận</p>
@@ -142,9 +181,9 @@ if (Auth::customer()) {
                             <?php endwhile ?>
                         </div>
                     </div>
-                <?php endif ?>
+                </div>
             </div>
-        </div>
+        <?php endif ?>
         <div class="side-bar">
             <?php foreach ($same_movie as $value1) : ?>
                 <div class="film-side-bar">
@@ -160,30 +199,46 @@ if (Auth::customer()) {
     </div>
 </div>
 <script>
-    document.getElementById("infor").addEventListener("click", function() {
-        document.querySelector(".film-comment").style.display = "none";
-        document.querySelector(".film-episode").style.display = "none";
-        document.querySelector(".film-content").style.display = "block";
-        document.querySelector(".btn-infor").style = "border-bottom: 2px solid #40a5ca; ";
-        document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
-        document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
-    })
-    document.getElementById("comment").addEventListener("click", function() {
-        document.querySelector(".film-content").style.display = "none";
-        document.querySelector(".film-episode").style.display = "none";
-        document.querySelector(".film-comment").style.display = "block";
-        document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
-        document.querySelector(".btn-infor").style = "border: none";
-        document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
-    })
-    document.getElementById("episode").addEventListener("click", function() {
-        document.querySelector(".film-content").style.display = "none";
-        document.querySelector(".film-comment").style.display = "none";
-        document.querySelector(".film-episode").style.display = "block";
-        document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
-        document.querySelector(".btn-infor").style = "border: none";
-        document.querySelector(".btn-episode").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
-    })
+    var typemovie = $("#typemovie").val();
+    if (typemovie != 2) {
+        document.getElementById("infor").addEventListener("click", function() {
+            document.querySelector(".film-comment").style.display = "none";
+            document.querySelector(".film-content").style.display = "block";
+            document.querySelector(".btn-infor").style = "border-bottom: 2px solid #40a5ca; ";
+            document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
+        })
+        document.getElementById("comment").addEventListener("click", function() {
+            document.querySelector(".film-content").style.display = "none";
+            document.querySelector(".film-comment").style.display = "block";
+            document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
+            document.querySelector(".btn-infor").style = "border: none";
+        })
+    } else {
+        document.getElementById("infor").addEventListener("click", function() {
+            document.querySelector(".film-comment").style.display = "none";
+            document.querySelector(".film-episode").style.display = "none";
+            document.querySelector(".film-content").style.display = "block";
+            document.querySelector(".btn-infor").style = "border-bottom: 2px solid #40a5ca; ";
+            document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
+            document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
+        })
+        document.getElementById("comment").addEventListener("click", function() {
+            document.querySelector(".film-content").style.display = "none";
+            document.querySelector(".film-episode").style.display = "none";
+            document.querySelector(".film-comment").style.display = "block";
+            document.querySelector(".btn-comment").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
+            document.querySelector(".btn-infor").style = "border: none";
+            document.querySelector(".btn-episode").style = "border: none; margin-left: 20px;cursor: pointer;";
+        })
+        document.getElementById("episode").addEventListener("click", function() {
+            document.querySelector(".film-content").style.display = "none";
+            document.querySelector(".film-comment").style.display = "none";
+            document.querySelector(".film-episode").style.display = "block";
+            document.querySelector(".btn-comment").style = "border: none; margin-left: 20px;cursor: pointer;";
+            document.querySelector(".btn-infor").style = "border: none";
+            document.querySelector(".btn-episode").style = "border-bottom: 2px solid #40a5ca; margin-left: 20px; ";
+        })
+    }
 </script>
 <script src="comment/comment.js"></script>
 <?php require_once 'footer.php'; ?>
