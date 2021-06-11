@@ -1,5 +1,16 @@
 <?php
 require_once('./config/config_login_fb.php');
+require_once('./autoload/Autoload.php');
+if (Input::hasPost('btnsearch')) {
+    $search = Input::post('search');
+    if($search != ''){
+        Redirect::url('filmsearch.php?search_input=' . $search);
+    }
+    else{
+        Redirect::url('');
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +42,12 @@ require_once('./config/config_login_fb.php');
                 <a href="./index.php" class="logo">
                     <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
                 </a>
+                <form class="search" method="post">
+                    <input type="text" id="search" name="search" placeholder="Tìm kiếm" autocomplete="off">
+                    <button type="submit" name="btnsearch" id="btnsearch" style="background-color: #000; display: flex; border: none">
+                        <i class="fa fa-search" style="position: absolute;top: 25%;left: 93%;color: gray;"></i>
+                    </button>
+                </form>
                 <ul class="nav-menu" id="nav-menu">
                     <li class="menu-dropdown">
                         <a href="#">Thể loại</a>

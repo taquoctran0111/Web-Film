@@ -47,11 +47,11 @@ require_once("header.php");
             <input type="text" name="username" placeholder="Tên đăng nhập" required><br>
             <img src="assets/images/icon/lock-solid-24.png" class="lock-icon" alt="">
             <input type="password" name="password" id="" placeholder="Mật khẩu" required><br>
-            <img src="assets/images/icon/lock-solid-24.png" class="lock-icon-2" alt="">
+            <img src="assets/images/icon/lock-solid-24.png" class="lock-icon-2" alt="" style="top: 194px">
             <input type="password" name="repassword" id="" placeholder="Nhập lại mật khẩu" required><br>
-            <img src="assets/images/icon/message-minus-solid-24.png" class="name-icon" alt="">
+            <img src="assets/images/icon/message-minus-solid-24.png" class="name-icon" alt="" style = "top: 248px">
             <input type="text" name="fullname" placeholder="Tên hiển thị" required><br>
-            <img src="assets/images/icon/email.png" class="email-icon" alt="">
+            <img src="assets/images/icon/email.png" class="email-icon" alt="" style="top: 298px">
             <input type="email" name="email" id="" placeholder="Email" required><br>
             <button type="submit" name="register">Đăng ký</button><br>
         </form>
