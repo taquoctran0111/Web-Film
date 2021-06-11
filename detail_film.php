@@ -1,7 +1,8 @@
 <?php
+// require_once("rating/rating.php");
 require_once('./autoload/Autoload.php');
-require_once './config/config2.php';
-require_once("rating/rating.php");
+require_once('./config/config2.php');
+// include("./rating/rating_func.php");
 $title = "Phim hay";
 require_once("header.php");
 
@@ -48,13 +49,51 @@ $typemovie = $r_detail_film['typemovie'];
 $queryepisode = "SELECT * FROM tbl_episodes WHERE film_id = '$film_id'";
 $runqueryepisode = mysqli_query($conn, $queryepisode);
 
-
-
 if (Auth::customer()) {
     $user_name = Auth::customer()->fullname;
+    $user_id = Auth::customer()->id;
 } else {
     $user_name = "Khách";
+    $user_id = "99";
 }
+
+$query_like = "SELECT COUNT(*) FROM tbl_rating WHERE film_id = $film_id AND rating_action='like'";
+$run_query_like = mysqli_query($conn, $query_like);
+$result_query_like = mysqli_fetch_array($run_query_like);
+
+$query_user_liked = "SELECT * FROM tbl_rating WHERE user_id=$user_id AND film_id=$film_id AND rating_action='like'";
+$r_user_liked = mysqli_query($conn,$query_user_liked);
+$check = mysqli_num_rows($r_user_liked);
+
+// print_r($result_query_like[0]);
+
+
+// function getLikes($id)
+// {
+//     global $conn;
+//     $sql = "SELECT COUNT(*) FROM tbl_rating 
+//                 WHERE film_id = $id AND rating_action='like'";
+//     $rs = mysqli_query($conn, $sql);
+//     $result = mysqli_fetch_array($rs);
+//     return $result[0];
+// }
+
+
+// function userLiked($film_id)
+// {
+//     global $conn;
+//     global $user_id;
+//     $sql = "SELECT * FROM tbl_rating WHERE user_id=$user_id 
+//                 AND film_id=$film_id AND rating_action='like'";
+//     $result = mysqli_query($conn, $sql);
+//     print_r($result);
+//     if (mysqli_num_rows($result) > 0) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
+
 ?>
 <div class="section" style="padding-top: 2.5em">
     <input type="hidden" id="typemovie" value="<?php echo $typemovie ?>">
@@ -69,9 +108,9 @@ if (Auth::customer()) {
                 </div>
                 <div class="rating-area">
                     <div class="rating-form">
-                        <i style="color: #777777;"<?php if (userLiked($film_id)) : ?> class="fa fa-heart like-btn" <?php else : ?> class="fa fa-heart-o like-btn" <?php endif ?> data-id="<?php echo $film_id ?>"></i>
+                        <i style="color: #777777;" <?php if ($check > 0) : ?> class="fa fa-heart like-btn" <?php else : ?> class="fa fa-heart-o like-btn" <?php endif ?> data-id="<?php echo $film_id ?>"></i>
                         <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: #777777;"></i> -->
-                        <span class="likes"><?php echo getLikes($film_id); ?></span>
+                        <span class="likes"><?php echo $result_query_like[0]; ?></span>
                     </div>
                 </div>
                 <div class="infor-film">
@@ -122,17 +161,11 @@ if (Auth::customer()) {
                     </video>
                 </div>
                 <div class="rating-area">
-                    <p style="color: #777">Đánh giá phim: </p>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fa fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fa fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fa fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fa fa-star"></label>
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fa fa-star"></label>
+                    <div class="rating-form">
+                        <i style="color: #777777;" <?php if ($check > 0) : ?> class="fa fa-heart like-btn" <?php else : ?> class="fa fa-heart-o like-btn" <?php endif ?> data-id="<?php echo $film_id ?>"></i>
+                        <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: #777777;"></i> -->
+                        <span class="likes"><?php echo $result_query_like[0]; ?></span>
+                    </div>
                 </div>
                 <div class="infor-film">
                     <h2><?= $r_detail_film['name'] ?></h2>

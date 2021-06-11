@@ -17,6 +17,10 @@ $queryCountView = "SELECT SUM(num_view) FROM tbl_films";
 $countView = mysqli_query($conn, $queryCountView);
 $count_view = mysqli_fetch_array($countView);
 
+$query_like = "SELECT COUNT(*) FROM tbl_rating";
+$countLike = mysqli_query($conn, $query_like);
+$count_like = mysqli_fetch_array($countLike);
+
 $queryRecentFilms = "SELECT * FROM tbl_films ORDER BY id DESC LIMIT 5";
 $resultRecentFilm = mysqli_query($conn, $queryRecentFilms);
 
@@ -58,7 +62,7 @@ $data_user = mysqli_query($conn, $queryUser);
             </div>
             <div class="card">
                 <div>
-                    <div class="numbers">1,042</div>
+                    <div class="numbers"><?= $count_like[0] ?></div>
                     <div class="cardName">Total Likes</div>
                 </div>
                 <div class="iconBox">

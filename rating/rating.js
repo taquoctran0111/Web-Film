@@ -9,14 +9,13 @@ $(document).ready(function () {
       action = "unlike";
     }
     $.ajax({
-      url: "rating/rating.php",
+      url: "http://localhost:8080/WebFilmFast/rating.php",
       type: "post",
       data: {
         action: action,
         film_id: film_id,
       },
       success: function (data) {
-        alert(data);
         res = JSON.parse(data);          
         if (action == "like") {
           $clicked_btn.removeClass("fa-heart-o");
