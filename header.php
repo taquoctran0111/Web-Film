@@ -111,7 +111,7 @@ if (Input::hasPost('btnsearch')) {
                         </p>
                     <?php elseif (isset($_SESSION['customer'])) : ?>
                         <p style="margin-right: 5px">Xin chào
-                            <li class="menu-dropdown">
+                            <li class="menu-dropdown" style="margin-right: 5px;">
                                 <a href="#"><?= Auth::customer()->fullname; ?></a>
                                 <ul class="menu-area">
                                     <ul>
@@ -120,7 +120,11 @@ if (Input::hasPost('btnsearch')) {
                                     </ul>
                                 </ul>
                             </li>
+                            <div class="imguser" style="width: 40px; height: 30px; margin-bottom: 10px" >
+                                <img src="<?= Auth::customer()->avatar; ?>" style="width: 100%; border-radius: 50%">
+                            </div>
                         </p>
+                        
                     <?php endif ?>
                     </li>
                 </ul>

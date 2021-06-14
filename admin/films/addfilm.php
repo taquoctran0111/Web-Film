@@ -31,11 +31,6 @@ if (Input::hasPost('add')) {
         $imageVertical = "assets/images/image-vertical/" . $fileImageVertical;
     }
 
-    // $category = $_POST['categories'];
-    // foreach ($category as $value) {
-    //     $query = "INSERT INTO tbl_listcategory(film_id, category_id) VALUES ('36','$value')";
-    //     $query_run = mysqli_query($conn, $query);
-    // }
     $name = Input::post('name');
     $subname = Input::post('otherName');
     $year = Input::post('year');
@@ -45,6 +40,7 @@ if (Input::hasPost('add')) {
     $duration = Input::post('duration');
     $subtitle = Input::post('subtitle');
     $quality = Input::post('quality');
+    $status = Input::post('status');
     $success = $DB->create('tbl_films', [
         'name' => $name,
         'sub_name' => $subname,
@@ -55,13 +51,15 @@ if (Input::hasPost('add')) {
         'duration' => $duration,
         'subtitle' => $subtitle,
         'quality' => $quality,
+        'status' => $status,
+        'num_view' => '11111',
         'image_horizontal' => $imageHorizontal,
         'image_vertical' => $imageVertical,
     ]);
     if ($success === true) {
         $alertSuccess = "Add film success";
     } else {
-        $error     = "Add film fail";
+        $error  = "Add film fail";
     }
 }
 ?>
@@ -130,6 +128,10 @@ if (Input::hasPost('add')) {
                     <div class="groupform">
                         <label for="inputQuality">Quality</label>
                         <input type="text" id="inputQuality" name="quality" required>
+                    </div>
+                    <div class="groupform">
+                        <label for="inputStatus">Status</label>
+                        <input type="text" id="inputStatus" name="status" required>
                     </div>
                     <div class="groupform">
                         <label for="inputIMGhorizontal">Image horizontal</label>

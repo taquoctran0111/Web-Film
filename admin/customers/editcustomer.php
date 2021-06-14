@@ -14,6 +14,15 @@ $data_user = mysqli_fetch_array($result);
 $oldpassword = md5(Input::post('oldpassword'));
 
 if (Input::hasPost('edit')) {
+    $folderAvatar = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/avatar/';
+    $imageAvatar = $data_user['avatar'];
+
+    if ($_FILES['imageavatar']['name'] != '') {
+        $fileAvatar = $_FILES['imageavatar']['name'];
+        $filetmpAvatar = $_FILES['imageavatar']['tmp_name'];
+        move_uploaded_file($filetmpAvatar, $folderAvatar . $fileAvatar);
+        $imageAvatar = "assets/images/avatar/" . $fileAvatar;
+    }
     $username   = Input::post('username');
     $oldpassword = md5(Input::post('oldpassword'));
     $newpassword   = md5(Input::post('newpassword'));
@@ -27,6 +36,7 @@ if (Input::hasPost('edit')) {
                 'password'   => $newpassword,
                 'fullname'  => $fullname,
                 'email'   => $email,
+                'avatar' => $imageAvatar,
             ], $id);
         
             if ($success === true) {
@@ -71,7 +81,7 @@ if (!is_object($data)) {
                         <?= $alertErr ?>
                     </div>
                 <?php endif ?>
-                <form class="editfilm" method="post">
+                <form class="editfilm" method="post" enctype="multipart/form-data">
                     <div class="groupform">
                         <label for="inputName">Userame</label>
                         <input type="text" id="inputName" name="username" value="<?= $data_user['username'] ?>" style="width: 20em;" required>
@@ -95,6 +105,12 @@ if (!is_object($data)) {
                     <div class="groupform">
                         <label for="inputEmail">Email</label>
                         <input type="text" id="inputEmail" name="email" value="<?= $data_user['email'] ?>" style="width: 20em;" required>
+                    </div>
+                    <div class="groupform">
+                        <label for="inputAvatar">Avatar</label>
+                        <img src="../../<?= $data_user['avatar'] ?>" alt="" style="width: 10em; height: 10em">
+                        <input type="file" id="inputAvatar" name="imageavatar">
+                        <!-- <input type="button" value="Edit Image" name="uploadVertical"> -->
                     </div>
                     <button class="btn" type="submit" style="margin-top: 20px;" name="edit">Edit customer</button>
                 </form>

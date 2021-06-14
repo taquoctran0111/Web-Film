@@ -866,14 +866,23 @@ footer .content {
 .film-comment .comment {
   margin-top: 15px;
   display: flex;
+  align-items: center;
 }
 .film-comment .comment .user-comment {
   line-height: 20px;
   margin-top: 7px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .film-comment .comment .user-comment .infor-user {
   display: flex;
+}
+.film-comment .comment .user-comment .reply{
+  background-color: #111;
+  border: none;
+  color: #128598;
+  font-size: 11px;
+  cursor: pointer;
+
 }
 .film-infor-tab {
   display: flex;

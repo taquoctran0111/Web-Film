@@ -10,25 +10,59 @@ if (Input::hasPost('add')) {
     $sql = "Select * FROM  tbl_users WHERE email = '" . Input::post('email') . '\'';
     $isSetEmail = $DB->query($sql);
 
-    if (!is_array($isSetEmail)) {
-        if (Input::post('password') == Input::post('repassword')) {
-            $created = $DB->create('tbl_users', [
-                'username'    => Input::post('username'),
-                'password' => md5(Input::post('password')),
-                'email'   =>  Input::post('email'),
-                'fullname'    => Input::post('fullname'),
-                'usertype_id'    => '2',
-            ]);
-            if ($created) {
-                $success = 'Register Success';
+    $sql2 = "Select * FROM  tbl_users WHERE username = '" . Input::post('username') . '\'';
+    $isSetUsername = $DB->query($sql2);
+
+    $password = Input::post('password');
+    $repassword = Input::post('repassword');
+
+    $folderAvatar = $_SERVER['DOCUMENT_ROOT'] . '/WebFilmFast/assets/images/avatar/';
+    $imageAvatar = "assets/images/empty.jpg";
+
+    if ($_FILES['imageavatar']['name'] != '') {
+        $fileAvatar = $_FILES['imageavatar']['name'];
+        $filetmpAvatar = $_FILES['imageavatar']['tmp_name'];
+        move_uploaded_file($filetmpAvatar, $folderAvatar . $fileAvatar);
+        $imageAvatar = "assets/images/avatar/" . $fileAvatar;
+    }
+
+    if(!is_array($isSetUsername)){
+        if (!is_array($isSetEmail)) {
+            if(strlen($password) < 8){
+                $error = "Mật khẩu phải có ít nhất 8 kí tự!";
+            }
+            elseif(!preg_match("#[0-9]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một số!";
+            }
+            elseif(!preg_match("#[A-Z]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một chữ hoa!";
+            }
+            elseif(!preg_match("#[a-z]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một chữ thường!";
+            }
+            elseif ($password == $repassword) {
+                $created = $DB->create('tbl_users', [
+                    'username'    => Input::post('username'),
+                    'password' => md5(Input::post('password')),
+                    'email'   =>  Input::post('email'),
+                    'fullname'    => Input::post('fullname'),
+                    'usertype_id'    => '2',
+                    'avatar' => $imageAvatar
+                ]);
+                if ($created) {
+                    $success = 'Đăng ký tài khoản thành công';
+                } else {
+                    $error = 'Đăng ký tài khoản không thành công, vui lòng thử lại';
+                }
             } else {
-                $error = 'Register Fail';
+                $error = 'Mật khẩu không giống nhau!';
             }
         } else {
-            $error = 'Passwords are not the same!';
+            $error = "Email đã tồn tại vui lòng sử dụng email khác";
         }
-    } else {
-        $error = "Email already exist";
+    }
+    else{
+        $error = "Tên đăng nhập đã được sử dụng!";
     }
 }
 ?>
@@ -51,7 +85,7 @@ if (Input::hasPost('add')) {
                         <?= $error ?>
                     </div>
                 <?php endif ?>
-                <form class="editfilm" method="post">
+                <form class="editfilm" method="post" enctype="multipart/form-data">
                     <div class="groupform">
                         <label for="inputName">Username</label>
                         <input type="text" id="inputName" name="username" style="width: 20em;" required>
@@ -71,6 +105,11 @@ if (Input::hasPost('add')) {
                     <div class="groupform">
                         <label for="inputEmail">Email</label>
                         <input type="email" id="inputEmail" name="email" style="width: 20em;" required>
+                    </div>
+                    <div class="groupform">
+                        <label for="inputAvatar">Avatar</label>
+                        <img src="../../assets/images/empty.jpg" alt="" style="width: 10em; height: 10em">
+                        <input type="file" id="inputAvatar" name="imageavatar">
                     </div>
                     <button class="btn" type="submit" name="add" style="margin-top: 20px;">Add customer</button>
                 </form>

@@ -2,28 +2,53 @@
 require_once('./autoload/Autoload.php');
 if (Input::hasPost('register')) {
 
-    $sql = "Select * FROM  tbl_users WHERE email = '" . Input::post('email') . '\'';
-    $isSetEmail = $DB->query($sql);
+    $sql1 = "Select * FROM  tbl_users WHERE email = '" . Input::post('email') . '\'';
+    $isSetEmail = $DB->query($sql1);
 
-    if (!is_array($isSetEmail)) {
-        if (Input::post('password') == Input::post('repassword')) {
-            $created = $DB->create('tbl_users', [
-                'username'    => Input::post('username'),
-                'password' => md5(Input::post('password')),
-                'email'   =>  Input::post('email'),
-                'fullname'    => Input::post('fullname'),
-                'usertype_id'    => '2',
-            ]);
-            if ($created) {
-                $success = 'Đăng ký tài khoản thành công';
+    $sql2 = "Select * FROM  tbl_users WHERE username = '" . Input::post('username') . '\'';
+    $isSetUsername = $DB->query($sql2);
+
+    $password = Input::post('password');
+    $repassword = Input::post('repassword');
+
+    if(!is_array($isSetUsername)){
+        if (!is_array($isSetEmail)) {
+            if(strlen($password) < 8){
+                $error = "Mật khẩu phải có ít nhất 8 kí tự!";
+            }
+            elseif(!preg_match("#[0-9]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một số!";
+            }
+            elseif(!preg_match("#[A-Z]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một chữ hoa!";
+            }
+            elseif(!preg_match("#[a-z]+#",$password)){
+                $error = "Mật khẩu phải có ít nhất một chữ thường!";
+            }
+            elseif ($password == $repassword) {
+                $created = $DB->create('tbl_users', [
+                    'username'    => Input::post('username'),
+                    'password' => md5(Input::post('password')),
+                    'email'   =>  Input::post('email'),
+                    'fullname'    => Input::post('fullname'),
+                    'usertype_id'    => '2',
+                    'avatar' => "assets/images/user.png",
+                ]);
+                if ($created) {
+                    $success = 'Đăng ký tài khoản thành công';
+                    Redirect::url("login.php");
+                } else {
+                    $error = 'Đăng ký tài khoản không thành công, vui lòng thử lại';
+                }
             } else {
-                $error = 'Đăng ký tài khoản không thành công, vui lòng thử lại';
+                $error = 'Mật khẩu không giống nhau!';
             }
         } else {
-            $error = 'Mật khẩu không giống nhau!';
+            $error = "Email đã tồn tại vui lòng sử dụng email khác";
         }
-    } else {
-        $error = "Email đã tồn tại vui lòng sử dụng email khác";
+    }
+    else{
+        $error = "Tên đăng nhập đã được sử dụng!";
     }
 }
 $title = "Đăng ký";

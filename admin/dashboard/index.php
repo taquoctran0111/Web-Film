@@ -106,7 +106,7 @@ $data_user = mysqli_query($conn, $queryUser);
                     <tbody>
                         <tr>
                             <td>
-                                <div class="imgBx"><img src="../assets/images/avatar.jpg"></div>
+                                <div class="imgBx"><img src="../../<?=$row1['avatar']?>"></div>
                             </td>
                             <td>
                                 <h4><?=$row1['fullname']?></h4>

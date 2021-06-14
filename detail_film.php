@@ -52,9 +52,11 @@ $runqueryepisode = mysqli_query($conn, $queryepisode);
 if (Auth::customer()) {
     $user_name = Auth::customer()->fullname;
     $user_id = Auth::customer()->id;
+    $avatar = Auth::customer()->avatar;
 } else {
     $user_name = "Khách";
     $user_id = "99";
+    $avatar = "assets/images/user.png";
 }
 
 $query_like = "SELECT COUNT(*) FROM tbl_rating WHERE film_id = $film_id AND rating_action='like'";
@@ -140,8 +142,9 @@ $check = mysqli_num_rows($r_user_liked);
                     <form method="POST" id="commentForm" class="film-comment">
                         <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
                         <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
+                        <input type="hidden" name="useravatar" id="useravatar" value="<?php echo $avatar ?>" />
                         <div class="send-comment">
-                            <img src="assets/images/user.png" alt="" style="width: 9%;">
+                            <img src="<?php echo $avatar?>" alt="" style="width: 6%; height: 6%; border-radius: 50%">
                             <input type="text" id="comment" name="comment" autocomplete="off">
                         </div>
                         <div class="form-group">
@@ -192,8 +195,9 @@ $check = mysqli_num_rows($r_user_liked);
                     <form method="POST" id="commentForm" class="film-comment">
                         <input type="hidden" name="filmid" id="filmid" value="<?php echo $film_id ?>" />
                         <input type="hidden" name="name" id="name" value="<?php echo $user_name ?>" />
+                        <input type="hidden" name="useravatar" id="useravatar" value="<?php echo $avatar ?>" />
                         <div class="send-comment">
-                            <img src="assets/images/user.png" alt="" style="width: 9%;">
+                            <img src="<?php echo $avatar?>" alt="" style="width: 6%; height: 6%; border-radius: 50%">
                             <input type="text" id="comment" name="comment" autocomplete="off">
                         </div>
                         <div class="form-group">

@@ -1,5 +1,4 @@
 $(document).ready(function(){ 
-	
 	showComments();
 	$('#commentForm').on('submit', function(event){
 		event.preventDefault();
@@ -30,11 +29,13 @@ $(document).ready(function(){
 // function to show comments
 function showComments()	{
 	var filmid = $('#filmid').val();
+	var useravatar = $('#useravatar').val();
 	$.ajax({
 		url:"comment/show_comments.php",
 		method:"POST",
 		data: {
 			filmid: filmid,
+			useravatar: useravatar,
 		},
 		success:function(response) {
 			$('#showComments').html(response);
