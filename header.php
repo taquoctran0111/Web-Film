@@ -10,7 +10,12 @@ if (Input::hasPost('btnsearch')) {
         Redirect::url('');
     }
 }
-
+if(Auth::customer()){
+    $iduser = Auth::customer()->id;
+    $queryuser = "SELECT * FROM tbl_users WHERE id = $iduser";
+    $runqueryuser = mysqli_query($conn, $queryuser);
+    $resultuser = mysqli_fetch_array($runqueryuser);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +126,7 @@ if (Input::hasPost('btnsearch')) {
                                 </ul>
                             </li>
                             <div class="imguser" style="width: 40px; height: 30px; margin-bottom: 10px" >
-                                <img src="<?= Auth::customer()->avatar; ?>" style="width: 100%; border-radius: 50%">
+                                <img src="<?= $resultuser['avatar']; ?>" alt="" style="width: 100%; border-radius: 50%">
                             </div>
                         </p>
                         
