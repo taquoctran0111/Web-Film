@@ -41,6 +41,7 @@ if (Input::hasPost('add')) {
     $subtitle = Input::post('subtitle');
     $quality = Input::post('quality');
     $status = Input::post('status');
+    $video = "assets/video/examplevideo.mp4";
     $success = $DB->create('tbl_films', [
         'name' => $name,
         'sub_name' => $subname,
@@ -55,6 +56,7 @@ if (Input::hasPost('add')) {
         'num_view' => '11111',
         'image_horizontal' => $imageHorizontal,
         'image_vertical' => $imageVertical,
+        'video' => $video
     ]);
     if ($success === true) {
         $alertSuccess = "Add film success";

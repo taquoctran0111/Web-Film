@@ -165,10 +165,10 @@ require_once("header.php");
                             <?= $result_new_film['name'] ?>
                         </div>
                         <div class="movie-infos">
-                            <div class="movie-info">
+                            <!-- <div class="movie-info">
                                 <i class="bx bxs-star"></i>
                                 <span>9.5</span>
-                            </div>
+                            </div> -->
                             <div class="movie-info">
                                 <i class="bx bxs-time"></i>
                                 <span><?= $result_new_film['duration'] ?> phút</span>
@@ -177,7 +177,7 @@ require_once("header.php");
                                 <span><?= $result_new_film['quality'] ?></span>
                             </div>
                             <div class="movie-info">
-                                <span>16+</span>
+                                <span><?= $result_new_film['year'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -410,7 +410,7 @@ require_once("header.php");
                             </div>
                             <div class="pricing-box-action">
                                 <a href="#" class="btn btn-hover">
-                                    <span>Register now</span>
+                                    <span>Đăng ký ngay</span>
                                 </a>
                             </div>
                         </div>
@@ -433,7 +433,7 @@ require_once("header.php");
                             </div>
                             <div class="pricing-box-action">
                                 <a href="#" class="btn btn-hover">
-                                    <span>Register now</span>
+                                    <span>Đăng ký ngay</span>
                                 </a>
                             </div>
                         </div>
@@ -456,7 +456,7 @@ require_once("header.php");
                             </div>
                             <div class="pricing-box-action">
                                 <a href="#" class="btn btn-hover">
-                                    <span>Register now</span>
+                                    <span>Đăng ký ngay</span>
                                 </a>
                             </div>
                         </div>

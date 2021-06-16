@@ -8,7 +8,7 @@
                         <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
                     </a>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?
+                       Theo dõi những bộ phim hay nhất, miễn phí trên web Flix. Những bộ phim mới nhất sẽ được cập nhật nhanh chóng trên Web. Chúc quý khách những giây phút xem phim vui vẻ. 
                     </p>
                     <div class="social-list">
                         <a href="#" class="social-item">
