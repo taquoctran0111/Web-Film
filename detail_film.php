@@ -2,6 +2,7 @@
 // require_once("rating/rating.php");
 require_once('./autoload/Autoload.php');
 require_once('./config/config2.php');
+require_once('./config/config_login_fb.php');
 // include("./rating/rating_func.php");
 $title = "Phim hay";
 require_once("header.php");
@@ -53,7 +54,13 @@ if (Auth::customer()) {
     $user_name = Auth::customer()->fullname;
     $user_id = Auth::customer()->id;
     $avatar = Auth::customer()->avatar;
-} else {
+}
+elseif(isset($_SESSION['access_token'])){
+    $user_name = $user->getField('name');
+    $user_id = "199";
+    $avatar = $userpic['url'];
+}
+else {
     $user_name = "Khách";
     $user_id = "99";
     $avatar = "assets/images/user.png";

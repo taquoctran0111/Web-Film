@@ -104,7 +104,7 @@ if(Auth::customer()){
                         </a>
                     <?php elseif (isset($_SESSION['access_token'])) : ?>
                         <p style="margin-right: 5px">Xin chào
-                            <li class="menu-dropdown">
+                            <li class="menu-dropdown" style="margin-right: 5px;">
                                 <a href="#"><?php echo $user->getField('name'); ?></a>
                                 <ul class="menu-area">
                                     <ul>
@@ -113,6 +113,9 @@ if(Auth::customer()){
                                     </ul>
                                 </ul>
                             </li>
+                            <div class="imguser" style="width: 40px; height: 30px; margin-bottom: 10px" >
+                                <img src="<?= $userpic['url']; ?>" alt="" style="width: 100%; border-radius: 50%">
+                            </div>
                         </p>
                     <?php elseif (isset($_SESSION['customer'])) : ?>
                         <p style="margin-right: 5px">Xin chào
